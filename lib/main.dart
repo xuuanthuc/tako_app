@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'app_pages.dart';
+import 'data/app_preferences.dart';
 import 'util/common/logger.dart';
 import 'util/lang/translation_service.dart';
 import 'util/theme/app_theme.dart';
@@ -13,7 +14,7 @@ void main() {
       builder: (_, BoxConstraints constraints) {
         ScreenUtil.init(
           constraints,
-          designSize: Size(375, 812),
+          designSize: Size(414, 896),
         );
         return MyApp();
       }
@@ -21,9 +22,21 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    AppPreference().init();
+  }
   @override
   Widget build(BuildContext context) {
     Logger.info('start');

@@ -1,3 +1,4 @@
 abstract class AppFileName {
-  static const String bot_avatar = "assets/images/bot_avatar.svg";
+  static const String logo = "assets/icons/logo.png";
+
 }

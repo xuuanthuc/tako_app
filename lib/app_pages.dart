@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
 import 'package:tako_app/modules/home/pages/home_binding.dart';
 import 'package:tako_app/modules/home/pages/home_page.dart';
+import 'package:tako_app/modules/splash/first_intro_screen.dart';
 import 'modules/splash/splash.dart';
 
 abstract class Routes {
   static const HOME = '/home_page';
   static const SPLASH = '/splash_page';
-  static const DEMO_PAGE = '/demo';
+  static const INTRO_FIRST_SCREEN = '/intro_first';
   static const CITY_SEARCH = '/citySearch';
   static const SETTING = '/setting';
 }
@@ -21,6 +22,7 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(name: Routes.SPLASH, page: () => SplashPage()),
+    GetPage(name: Routes.INTRO_FIRST_SCREEN, page: () => FirstIntroScreen()),
   ];
 }
 

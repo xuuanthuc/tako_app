@@ -9,17 +9,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Column(
-          children: [
-            Text(
-              LocaleKeys.home_string_1.tr,
-              style: cardTextStyle,
-            ),
-            Text(
-              _demoController.demo.value.value2,
-              style: cardTextStyle,
-            )
-          ],
-        ));
+    return Obx(() => Scaffold(
+          body: Container(
+            child: Text("home"),
+          ),
+        ),
+    );
   }
 }
