@@ -1,27 +1,26 @@
 import 'package:get/get.dart';
-
-
-import 'modules/module1/bindings/weather_binding.dart';
-import 'modules/module1/views/demo_page.dart';
-import 'modules/module1/views/home_weather_page.dart';
+import 'package:tako_app/modules/home/pages/home_binding.dart';
+import 'package:tako_app/modules/home/pages/home_page.dart';
+import 'modules/splash/splash.dart';
 
 abstract class Routes {
-  static const HOME = '/homeWeather';
+  static const HOME = '/home_page';
+  static const SPLASH = '/splash_page';
   static const DEMO_PAGE = '/demo';
   static const CITY_SEARCH = '/citySearch';
   static const SETTING = '/setting';
 }
 
 class AppPages {
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(
       name: Routes.HOME,
-      page: () => HomeWeatherPage(),
-      binding: WeatherBinding(),
+      page: () => HomePage(),
+      binding: HomeBinding(),
     ),
-    GetPage(name: Routes.DEMO_PAGE, page: () => DemoPage()),
+    GetPage(name: Routes.SPLASH, page: () => SplashPage()),
   ];
 }
 

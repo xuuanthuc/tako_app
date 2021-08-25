@@ -1,10 +1,9 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tako_app/modules/home/home_repository.dart';
 import '../../models/common/error_model.dart';
 import '../../models/module1/demo_model.dart';
 import '../../models/module1/weather_model.dart';
-import '../../modules/module1/module1_repository_adapter.dart';
 import '../../util/constants/locale_keys.dart';
-import '../db.dart';
 import '../request.dart';
 import '../url_api.dart';
 
@@ -12,11 +11,10 @@ final locationUrl = (getLocalUrl, city) => '${getLocalUrl}=${city}';
 final weatherUrl =
     (fetchWeatherUrl, locationId) => '${fetchWeatherUrl}${locationId}';
 
-class Module1Repository implements IModule1Repository {
+class HomeRepository implements IHomeRepository {
   Request _request = Request();
   late SharedPreferences preferences;
 
-  LocalDatabaseHelper dbLocal = LocalDatabaseHelper.dbHelper;
 
   Module1Repository() {
     installPreferences();
@@ -44,10 +42,6 @@ class Module1Repository implements IModule1Repository {
 
   @override
   Future<Object> getWeatherFromCity(String city) async {
-    Object? dataLocal = await dbLocal.getWeatherByLocation(city);
-    if (dataLocal != null) {
-      return WeatherModel.dataLocalFromJson(dataLocal);
-    }
     final int locationId = await getLocationFromCity(city);
     if (locationId == 0) {
       return {LocaleKeys.detail: LocaleKeys.not_found};
@@ -59,7 +53,6 @@ class Module1Repository implements IModule1Repository {
       return WeatherModel();
     } else {
       WeatherModel weather = WeatherModel.fromJson(res);
-      dbLocal.addWeather(weather);
       return weather;
     }
   }
