@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tako_app/data/app_preferences.dart';
+import 'package:tako_app/util/common/logger.dart';
 import 'package:tako_app/util/common/screen_util.dart';
 import 'package:tako_app/util/constants/app_image.dart';
 import 'package:tako_app/util/theme/app_colors.dart';
@@ -45,15 +46,13 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> checkFirstSeen() async {
     var _seen = await AppPreference().getSeen();
-    print(_seen);
     if(_seen == true){
       checkLogin();
-      AppPreference().setSeen();
-
     } else {
       AppPreference().setSeen();
       Get.offAllNamed(Routes.INTRO_FIRST_SCREEN);
     }
+    Logger.info("Check intro seen: $_seen");
   }
 
   Future<void> runIntro() async {
