@@ -40,13 +40,13 @@ class _SplashPageState extends State<SplashPage> {
     // if (token.isEmpty) {
     //   Get.offAllNamed(Routes.LOGIN);
     // } else {
-    Get.offAllNamed(Routes.HOME);
+    Get.offAllNamed(Routes.AUTH);
     // }
   }
 
   Future<void> checkFirstSeen() async {
     var _seen = await AppPreference().getSeen();
-    if(_seen == true){
+    if(_seen == false){
       checkLogin();
     } else {
       AppPreference().setSeen();
@@ -83,7 +83,7 @@ class _SplashPageState extends State<SplashPage> {
     }
     await Future.delayed(Duration(milliseconds: 600));
     for (double i = positionRounedLeft; i <= 270; i = i + 1.1) {
-      await Future.delayed(Duration(milliseconds: 1));
+      await Future.delayed(Duration(microseconds: 1));
       setState(() {
         positionRounedLeft = i;
         if(roundSize >= 20){
@@ -94,7 +94,7 @@ class _SplashPageState extends State<SplashPage> {
         }
       });
       }
-    await Future.delayed(Duration(milliseconds: 400));
+    await Future.delayed(Duration(milliseconds: 600));
     for(double i = roundSize; i <= 1500 ; i = i + 1){
       await Future.delayed(Duration(microseconds: 700));
       setState(() {

@@ -6,6 +6,7 @@ final HexColor orange = HexColor("#FFAA00");
 final HexColor lowOrange = HexColor("#FFF5E1");
 final HexColor lowBlack = HexColor("#616161");
 final HexColor greySmall = HexColor("#F0F0F0");
+final HexColor lowGrey = HexColor("#ABABAB");
 
 
 class HexColor extends Color {

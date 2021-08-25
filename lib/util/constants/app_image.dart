@@ -1,6 +1,8 @@
 abstract class AppFileName {
   //icons
   static const String logo = "assets/icons/logo.png";
+  static const String logoOrange = "assets/icons/logoOrange.png";
+
 
 
   // images

@@ -73,9 +73,8 @@ class _FirstIntroScreenState extends State<FirstIntroScreen> {
         });
       }
     }  else if (flag == 4) {
-      Get.toNamed(Routes.HOME);
+      Get.toNamed(Routes.AUTH);
     }
-
   }
 
   @override
@@ -135,15 +134,6 @@ class _FirstIntroScreenState extends State<FirstIntroScreen> {
             ),
           ),
           Positioned(
-            left: width(0),
-            bottom: height(10),
-            child: Container(
-              height: height(1),
-              width: width(progressSliderWidth),
-              child: Image.asset(AppFileName.dot),
-            ),
-          ),
-          Positioned(
             left: width(paddingLeftprogressSlider),
             bottom: height(10),
             child: Container(
@@ -178,7 +168,7 @@ class _FirstIntroScreenState extends State<FirstIntroScreen> {
       style: GoogleFonts.bungee(
         textStyle: TextStyle(
           height: 1.4,
-          fontSize: size(45),
+          fontSize: size(40),
           color: lowBlack,
         ),
       ),
