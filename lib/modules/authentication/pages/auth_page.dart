@@ -103,7 +103,10 @@ class AuthScreen extends StatelessWidget {
                   horizontal: width(65), vertical: height(30)),
               child: Obx(
                 () => CustumButtonDesign(
-                    ontap: () => submitAuthentication(),
+                    ontap: () {
+                      FocusScope.of(context).unfocus();
+                      submitAuthentication();
+                    },
                     label: _authController.isLogin == true
                         ? 'Đăng nhập'
                         : 'Đăng ký'),

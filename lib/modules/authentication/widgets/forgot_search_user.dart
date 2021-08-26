@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tako_app/modules/common/widgets/custom_button_design.dart';
@@ -9,12 +8,13 @@ import 'package:tako_app/util/theme/app_colors.dart';
 
 import '../auth_controller.dart';
 import 'package:get/get.dart';
+
 class ForgotSearchUserWidget extends StatelessWidget {
   ForgotSearchUserWidget({Key? key}) : super(key: key);
   final AuthController _authController = Get.find();
   TextEditingController newPassController = TextEditingController();
 
-  void submitAuth(){
+  void submitAuth() {
     _authController.resetPassword(newPass: newPassController.text);
   }
 
@@ -58,8 +58,7 @@ class ForgotSearchUserWidget extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: width(30)),
                   child: Text(
-                    'Nhập thông tin số điện thoại hoặc email xác thực TAKO của bạn và nhập mật khẩu mới'
-                    ,
+                    'Nhập thông tin số điện thoại hoặc email xác thực TAKO của bạn và nhập mật khẩu mới',
                     style: GoogleFonts.roboto(
                       textStyle: TextStyle(
                         height: 1.4,
@@ -84,7 +83,8 @@ class ForgotSearchUserWidget extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                             fontSize: size(16),
                             color: lowBlack)),
-                    decoration: decorTextField('Nhập số điện thoại hoặc email đã đăng ký'),
+                    decoration: decorTextField(
+                        'Nhập số điện thoại hoặc email đã đăng ký'),
                   ),
                 ),
                 SizedBox(height: height(20)),
@@ -110,7 +110,7 @@ class ForgotSearchUserWidget extends StatelessWidget {
                   child: TextField(
                     // controller: newPassController,
                     obscureText: true,
-                    textInputAction: TextInputAction.next,
+                    textInputAction: TextInputAction.done,
                     style: GoogleFonts.roboto(
                         textStyle: TextStyle(
                             fontWeight: FontWeight.w700,
@@ -126,9 +126,13 @@ class ForgotSearchUserWidget extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: width(65), vertical: height(30)),
+              padding: EdgeInsets.symmetric(
+                  horizontal: width(65), vertical: height(30)),
               child: CustumButtonDesign(
-                  ontap: () => submitAuth(),
+                  ontap: () {
+                    FocusScope.of(context).unfocus();
+                    submitAuth();
+                  },
                   label: 'Xác nhận'),
             ),
           ),
@@ -138,14 +142,14 @@ class ForgotSearchUserWidget extends StatelessWidget {
   }
 
   Widget labelTextField(String label) => Padding(
-    padding: EdgeInsets.symmetric(horizontal: width(30)),
-    child: Text(
-      label,
-      style: GoogleFonts.roboto(
-          textStyle: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: size(16),
-              color: lowBlack)),
-    ),
-  );
+        padding: EdgeInsets.symmetric(horizontal: width(30)),
+        child: Text(
+          label,
+          style: GoogleFonts.roboto(
+              textStyle: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: size(16),
+                  color: lowBlack)),
+        ),
+      );
 }

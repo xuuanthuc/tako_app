@@ -42,7 +42,7 @@ class FormLoginWidget extends StatelessWidget {
               // do something with text
               _authController.password.value = text;
             },
-            textInputAction: TextInputAction.next,
+            textInputAction: TextInputAction.done,
             obscureText: true,
             style: GoogleFonts.roboto(
                 textStyle: TextStyle(
