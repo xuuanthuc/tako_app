@@ -11,7 +11,7 @@ class AppPreference {
 
 
   void setSeen() async {
-    await prefs.setBool('seen', false);
+    await prefs.setBool('seen', true);
   }
   Future<bool?> getSeen() async {
     return prefs.getBool('seen');

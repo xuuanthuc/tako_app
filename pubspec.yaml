@@ -38,7 +38,7 @@ dependencies:
   url_launcher: ^6.0.9
   pull_to_refresh: ^2.0.0
   fluttertoast: ^8.0.6
-
+  firebase_database: ^7.2.0
   firebase_core: ^1.4.0
 
 dev_dependencies:

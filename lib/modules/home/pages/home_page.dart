@@ -9,11 +9,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
+    return Scaffold(
           body: Container(
             child: Text("home"),
           ),
-        ),
     );
   }
 }

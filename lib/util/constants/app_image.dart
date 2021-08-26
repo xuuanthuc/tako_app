@@ -12,6 +12,7 @@ abstract class AppFileName {
   static const String intro_4 = "assets/images/intro4.png";
   static const String rider = "assets/images/rider.png";
   static const String dot = "assets/images/slide_dot.png";
+  static const String forgot_password = "assets/images/forgot_pass.png";
 
   //svgs
 }

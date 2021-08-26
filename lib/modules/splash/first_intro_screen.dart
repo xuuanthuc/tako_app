@@ -53,7 +53,7 @@ class _FirstIntroScreenState extends State<FirstIntroScreen> {
             image = AppFileName.intro_3;
             label = 'Đặt hàng\nmọi nơi';
             labelButton =  "Tiếp theo";
-            description = 'Cập nhật thông tin khuyến mãi khủng cùng nhiều món ngon hấp dẫn';
+            description = 'Đặt hàng món ăn, đồ uống... với các chương trình ưu đãi diễn ra thường xuyên';
           }
         });
       }

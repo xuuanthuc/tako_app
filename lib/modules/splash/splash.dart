@@ -46,7 +46,7 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> checkFirstSeen() async {
     var _seen = await AppPreference().getSeen();
-    if(_seen == false){
+    if(_seen == true){
       checkLogin();
     } else {
       AppPreference().setSeen();
@@ -94,7 +94,7 @@ class _SplashPageState extends State<SplashPage> {
         }
       });
       }
-    await Future.delayed(Duration(milliseconds: 600));
+    await Future.delayed(Duration(milliseconds: 400));
     for(double i = roundSize; i <= 1500 ; i = i + 1){
       await Future.delayed(Duration(microseconds: 700));
       setState(() {

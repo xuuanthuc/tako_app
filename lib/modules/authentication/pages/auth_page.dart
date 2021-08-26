@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tako_app/app_pages.dart';
 import 'package:tako_app/modules/authentication/auth_controller.dart';
 import 'package:tako_app/modules/authentication/widgets/form_login_widget.dart';
 import 'package:tako_app/modules/authentication/widgets/form_register_widget.dart';
@@ -23,6 +24,11 @@ class AuthScreen extends StatelessWidget {
   void tapRegister() {
     _authController.isLogin.value = false;
     print('register');
+  }
+
+  void submitAuthentication() {
+    _authController.sumbit();
+    // _authController.getAPi();
   }
 
   @override
@@ -82,7 +88,7 @@ class AuthScreen extends StatelessWidget {
                   ),
                 ),
                 Obx(
-                      () => Visibility(
+                  () => Visibility(
                     child: FormRegisterWidget(),
                     visible: !_authController.isLogin.value,
                   ),
@@ -97,7 +103,7 @@ class AuthScreen extends StatelessWidget {
                   horizontal: width(65), vertical: height(30)),
               child: Obx(
                 () => CustumButtonDesign(
-                    ontap: () {},
+                    ontap: () => submitAuthentication(),
                     label: _authController.isLogin == true
                         ? 'Đăng nhập'
                         : 'Đăng ký'),
