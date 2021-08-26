@@ -73,7 +73,7 @@ class _FirstIntroScreenState extends State<FirstIntroScreen> {
         });
       }
     }  else if (flag == 4) {
-      Get.toNamed(Routes.AUTH);
+      Get.offAllNamed(Routes.AUTH);
     }
   }
 
