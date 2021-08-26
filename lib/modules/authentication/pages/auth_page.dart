@@ -20,7 +20,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  final AuthController _authController = Get.put(AuthController());
+  final AuthController _authController = Get.find();
   bool isLoading = false;
 
   void tapLogin() {

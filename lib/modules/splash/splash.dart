@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tako_app/data/app_preferences.dart';
+import 'package:tako_app/modules/authentication/auth_controller.dart';
 import 'package:tako_app/util/common/logger.dart';
 import 'package:tako_app/util/common/screen_util.dart';
 import 'package:tako_app/util/constants/app_image.dart';
@@ -18,6 +19,8 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  final AuthController _authController = Get.put(AuthController());
+
   double logoHeight = 91.5;
   double logoWidth = 318;
 
@@ -36,12 +39,17 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   Future<void> checkLogin() async {
-    // var token = AppPreference().getToken();
-    // if (token.isEmpty) {
-    //   Get.offAllNamed(Routes.LOGIN);
-    // } else {
-    Get.offAllNamed(Routes.AUTH);
-    // }
+    var uid = AppPreference().getUID();
+    var userName =  AppPreference().getUsername();
+    var passWord = AppPreference().getPassword();
+    if(uid.isEmpty){
+      Get.offAllNamed(Routes.AUTH);
+    } else {
+      await _authController.login(
+        userN: userName,
+        passW: passWord,
+      );
+    }
   }
 
   Future<void> checkFirstSeen() async {

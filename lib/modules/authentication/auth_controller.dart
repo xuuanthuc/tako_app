@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
+import 'package:tako_app/data/app_preferences.dart';
 import 'package:tako_app/models/userModel.dart';
 import 'package:tako_app/modules/splash/effects_screen.dart';
 import 'package:tako_app/util/common/show_toast.dart';
@@ -18,7 +19,10 @@ class AuthController extends GetxController {
 
   void sumbit() {
     if (isLogin.value == true) {
-      login();
+      login(
+        userN: username.value,
+        passW: password.value,
+      );
     } else {
       register();
     }
@@ -59,18 +63,22 @@ class AuthController extends GetxController {
     isLogin.value = true;
   }
 
-  Future<void> login() async {
-    await getAPiUserLogin();
+  Future<void> login({required String userN, required String passW}) async {
+    await getAPiUserLogin(
+      userNN: userN,
+      passWW: passW,
+    );
     await Future.delayed(Duration(milliseconds: 450));
-    if (username.value == user.value.username &&
-        password.value == user.value.password) {
+    if (userN == user.value.username &&
+        passW == user.value.password) {
       Get.toNamed(Routes.EFFECT);
     } else {
       showToast("Tài khoản hoặc mật khẩu không chính xác");
     }
   }
 
-  Future<void> getAPiUserLogin() async {
+  Future<void> getAPiUserLogin({required String userNN, required String passWW}) async {
+    print('go login');
     await database.child('users').get().then(
       (event) {
         final data = Map<String, dynamic>.from(event.value);
@@ -78,14 +86,19 @@ class AuthController extends GetxController {
           (key, value) {
             var userN = value['username'];
             var passW = value['password'];
-            if (username.value == userN && password.value == passW) {
+            if (userNN == userN && passWW == passW) {
               user.value = User(
                 id: key,
                 username: userN,
                 password: passW,
                 name: value['name'],
               );
-            } else {}
+              AppPreference().saveUID(user.value.id ?? "");
+              AppPreference().saveUsername(user.value.username ?? "");
+              AppPreference().savePassword(user.value.password ?? "");
+            } else {
+
+            }
           },
         );
       },

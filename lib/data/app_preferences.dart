@@ -17,13 +17,33 @@ class AppPreference {
     return prefs.getBool('seen');
   }
 
-  void saveToken(String value) async {
-    await prefs.setString(keyToken, value);
+  void saveUID(String value) async {
+    await prefs.setString('uid', value);
   }
 
-  String getToken() {
-    return prefs.getString(keyToken) ?? "";
+  String getUID() {
+    return prefs.getString('uid') ?? "";
   }
+
+  void saveUsername(String value) async {
+    await prefs.setString('username', value);
+  }
+
+  String getUsername() {
+    return prefs.getString('username') ?? "";
+  }
+
+
+  void savePassword(String value) async {
+    await prefs.setString('password', value);
+  }
+
+  String getPassword() {
+    return prefs.getString('password') ?? "";
+  }
+
+
+
 
   void saveDeviceId(String value) async {
     await prefs.setString(keyDeviceId, value);

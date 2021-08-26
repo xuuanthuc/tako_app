@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:tako_app/modules/authentication/auth_binding.dart';
 import 'package:tako_app/modules/authentication/pages/auth_page.dart';
 import 'package:tako_app/modules/authentication/pages/forgot_password.dart';
 import 'package:tako_app/modules/home/home_binding.dart';
@@ -29,6 +30,8 @@ class AppPages {
     GetPage(
       name: Routes.AUTH,
       page: () => AuthScreen(),
+      binding: AuthBinding(),
+
     ),
     GetPage(
       name: Routes.FORGOT_PASS,
@@ -37,6 +40,7 @@ class AppPages {
     GetPage(
       name: Routes.SPLASH,
       page: () => SplashPage(),
+      binding: AuthBinding(),
     ),
     GetPage(
       name: Routes.INTRO_FIRST_SCREEN,
