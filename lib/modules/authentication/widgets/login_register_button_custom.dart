@@ -31,8 +31,10 @@ Widget loginRegisterBtn(
                         color: lowBlack),
                   ),
                 ),
-                Visibility(
-                  visible: isLogin,
+                AnimatedOpacity(
+                  opacity: isLogin ? 1.0 : 0.0,
+                  duration: Duration(milliseconds: 400),
+                  // visible: isLogin,
                   child: Container(
                     height: height(5),
                     width: width(30),

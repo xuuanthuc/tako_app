@@ -6,15 +6,22 @@ import 'package:tako_app/modules/authentication/auth_controller.dart';
 import 'package:tako_app/modules/authentication/widgets/form_login_widget.dart';
 import 'package:tako_app/modules/authentication/widgets/form_register_widget.dart';
 import 'package:tako_app/modules/authentication/widgets/login_register_button_custom.dart';
+import 'package:tako_app/modules/common/lazy_load_widget.dart';
 import 'package:tako_app/modules/common/widgets/custom_button_design.dart';
 import 'package:tako_app/util/common/screen_util.dart';
 import 'package:tako_app/util/constants/app_image.dart';
 import 'package:tako_app/util/theme/app_colors.dart';
 
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends StatefulWidget {
   AuthScreen({Key? key}) : super(key: key);
 
+  @override
+  _AuthScreenState createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
   final AuthController _authController = Get.put(AuthController());
+  bool isLoading = false;
 
   void tapLogin() {
     _authController.isLogin.value = true;
@@ -26,9 +33,15 @@ class AuthScreen extends StatelessWidget {
     print('register');
   }
 
-  void submitAuthentication() {
+  Future<void> submitAuthentication() async {
+    setState(() {
+      isLoading = true;
+    });
+    await Future.delayed(Duration(seconds: 1));
     _authController.sumbit();
-    // _authController.getAPi();
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -81,38 +94,50 @@ class AuthScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: height(15)),
-                Obx(
-                  () => Visibility(
-                    child: FormLoginWidget(),
-                    visible: _authController.isLogin.value,
-                  ),
+                Stack(
+                  children: [
+                    Obx(
+                      () => AnimatedOpacity(
+                        child: Visibility(
+                            visible: _authController.isLogin.value,
+                            child: FormLoginWidget()),
+                        opacity: _authController.isLogin.value ? 1.0 : 0.0,
+                        duration: Duration(milliseconds: 500),
+                      ),
+                    ),
+                    Obx(
+                      () => AnimatedOpacity(
+                        child: Visibility(
+                            visible: !_authController.isLogin.value,
+                            child: FormRegisterWidget()),
+                        opacity: !_authController.isLogin.value ? 1.0 : 0.0,
+                        duration: Duration(milliseconds: 500),
+                      ),
+                    ),
+                  ],
                 ),
-                Obx(
-                  () => Visibility(
-                    child: FormRegisterWidget(),
-                    visible: !_authController.isLogin.value,
+                SizedBox(height: height(40)),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: width(65), vertical: height(30)),
+                  child: Obx(
+                    () => CustumButtonDesign(
+                        ontap: () {
+                          FocusScope.of(context).unfocus();
+                          submitAuthentication();
+                        },
+                        label: _authController.isLogin == true
+                            ? 'Đăng nhập'
+                            : 'Đăng ký'),
                   ),
                 ),
               ],
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: width(65), vertical: height(30)),
-              child: Obx(
-                () => CustumButtonDesign(
-                    ontap: () {
-                      FocusScope.of(context).unfocus();
-                      submitAuthentication();
-                    },
-                    label: _authController.isLogin == true
-                        ? 'Đăng nhập'
-                        : 'Đăng ký'),
-              ),
-            ),
-          ),
+          Visibility(
+            visible: isLoading,
+            child: LazyLoad(),
+          )
         ],
       ),
     );

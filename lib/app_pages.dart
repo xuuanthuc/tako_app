@@ -3,6 +3,7 @@ import 'package:tako_app/modules/authentication/pages/auth_page.dart';
 import 'package:tako_app/modules/authentication/pages/forgot_password.dart';
 import 'package:tako_app/modules/home/home_binding.dart';
 import 'package:tako_app/modules/home/pages/home_page.dart';
+import 'package:tako_app/modules/splash/effects_screen.dart';
 import 'package:tako_app/modules/splash/first_intro_screen.dart';
 import 'modules/splash/splash.dart';
 
@@ -12,6 +13,7 @@ abstract class Routes {
   static const INTRO_FIRST_SCREEN = '/intro_first';
   static const AUTH = '/auth_screen';
   static const FORGOT_PASS = '/forgot-password-screen';
+  static const EFFECT  = '/effects-screen';
   static const SETTING = '/setting';
 }
 
@@ -39,6 +41,10 @@ class AppPages {
     GetPage(
       name: Routes.INTRO_FIRST_SCREEN,
       page: () => FirstIntroScreen(),
+    ),
+    GetPage(
+      name: Routes.EFFECT,
+      page: () => EffectScreen(),
     ),
   ];
 }

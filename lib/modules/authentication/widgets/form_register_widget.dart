@@ -87,7 +87,7 @@ class FormRegisterWidget extends StatelessWidget {
             decoration: decorTextField('Nhập lại mật khẩu của bạn'),
           ),
         ),
-        SizedBox(height: height(130)),
+
       ],
     );
   }

@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:tako_app/models/userModel.dart';
+import 'package:tako_app/modules/splash/effects_screen.dart';
 import 'package:tako_app/util/common/show_toast.dart';
 
 import '../../app_pages.dart';
@@ -10,6 +11,7 @@ class AuthController extends GetxController {
   RxString username = ''.obs;
   RxString name = ''.obs;
   RxString password = ''.obs;
+
   var user = User().obs;
   List listUser = <User>[].obs;
   final database = FirebaseDatabase.instance.reference();
@@ -34,13 +36,13 @@ class AuthController extends GetxController {
   Future<void> resetPassword({required String newPass}) async {
     await getAPiUserRegister();
     if (username.value == user.value.username) {
-      showToast("${user.value.name} quên pass à, ngu thế :)");
       await database.child('users/${user.value.id}').update(
         {
           'password': newPass,
         },
       );
       showToast("Đã cập nhật thành công");
+      Get.back();
     } else {
       showToast("Số điện thoại hoặc email không tồn tại");
     }
@@ -54,13 +56,15 @@ class AuthController extends GetxController {
     };
     await database.child('users').push().set(nextuser);
     showToast("Đăng ký thành công");
+    isLogin.value = true;
   }
 
   Future<void> login() async {
     await getAPiUserLogin();
+    await Future.delayed(Duration(milliseconds: 450));
     if (username.value == user.value.username &&
         password.value == user.value.password) {
-      Get.offAllNamed(Routes.HOME);
+      Get.toNamed(Routes.EFFECT);
     } else {
       showToast("Tài khoản hoặc mật khẩu không chính xác");
     }
