@@ -25,7 +25,7 @@ class AppPages {
     GetPage(
       name: Routes.HOME,
       page: () => HomePage(),
-      binding: HomeBinding(),
+      bindings: [HomeBinding(), AuthBinding()]
     ),
     GetPage(
       name: Routes.AUTH,

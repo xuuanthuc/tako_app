@@ -119,22 +119,6 @@ class _ForgotSearchUserWidgetState extends State<ForgotSearchUserWidget> {
                   decoration: decorTextField('Nhập mật khẩu mới'),
                 ),
               ),
-              SizedBox(height: height(20)),
-              labelTextField('Nhập lại mật khẩu'),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: width(30)),
-                child: TextField(
-                  // controller: newPassController,
-                  obscureText: true,
-                  textInputAction: TextInputAction.done,
-                  style: GoogleFonts.roboto(
-                      textStyle: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: size(16),
-                          color: lowBlack)),
-                  decoration: decorTextField('Nhập lại mật khẩu mới'),
-                ),
-              ),
               SizedBox(height: height(40)),
               Padding(
                 padding: EdgeInsets.symmetric(

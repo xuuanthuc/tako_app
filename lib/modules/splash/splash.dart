@@ -46,6 +46,7 @@ class _SplashPageState extends State<SplashPage> {
       Get.offAllNamed(Routes.AUTH);
     } else {
       await _authController.login(
+        tag: 2,
         userN: userName,
         passW: passWord,
       );

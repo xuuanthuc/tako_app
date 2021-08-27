@@ -9,7 +9,9 @@ import 'package:get/get.dart';
 
 class FormLoginWidget extends StatelessWidget {
   FormLoginWidget({Key? key}) : super(key: key);
+
   final AuthController _authController = Get.find();
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,37 +21,61 @@ class FormLoginWidget extends StatelessWidget {
         labelTextField('Số điện thoại hoặc email'),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width(30)),
-          child: TextField(
-              onChanged: (text) {
-                // do something with text
-                _authController.username.value = text;
-              },
-              textInputAction: TextInputAction.next,
-              style: GoogleFonts.roboto(
-                  textStyle: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: size(16),
-                      color: lowBlack)),
-              decoration:
-                  decorTextField('Nhập số điện thoại hoặc email của bạn')),
+          child: Form(
+            key: _authController.formUser,
+            child: TextFormField(
+                onChanged: (text) {
+                  // do something with text
+                  _authController.username.value = text;
+                },
+                validator: (value){
+                  if(value!.isEmpty){
+                    return 'Hãy điền số điện thoại email';
+                  } else if(!value.contains('@')){
+                    if(value.trim()[0] != "0"){
+                      return 'Hãy điền đúng số điện thoại hoặc email';
+                    } else if(value.trim().length < 9){
+                      return 'Hãy điền đúng số điện thoại hoặc email';
+                    }
+                  }
+                },
+                textInputAction: TextInputAction.next,
+                style: GoogleFonts.roboto(
+                    textStyle: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: size(16),
+                        color: lowBlack)),
+                decoration:
+                    decorTextField('Nhập số điện thoại hoặc email của bạn')),
+          ),
         ),
         SizedBox(height: height(30)),
         labelTextField('Mật khẩu'),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width(30)),
-          child: TextField(
-            onChanged: (text) {
-              // do something with text
-              _authController.password.value = text;
-            },
-            textInputAction: TextInputAction.done,
-            obscureText: true,
-            style: GoogleFonts.roboto(
-                textStyle: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: size(16),
-                    color: lowBlack)),
-            decoration: decorTextField('Nhập mật khẩu của bạn'),
+          child: Form(
+            key: _authController.formPass,
+            child: TextFormField(
+              onChanged: (text) {
+                // do something with text
+                _authController.password.value = text;
+              },
+              validator: (value){
+                if(value!.isEmpty){
+                  return 'Hãy điền mật khẩu';
+                } else if(value.length < 6 || !value.contains(RegExp(r'[A-Z]'))){
+                return 'Mật khẩu phải có chữ in hoa và trên 6 ký tự';
+                }
+              },
+              textInputAction: TextInputAction.done,
+              obscureText: true,
+              style: GoogleFonts.roboto(
+                  textStyle: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: size(16),
+                      color: lowBlack)),
+              decoration: decorTextField('Nhập mật khẩu của bạn'),
+            ),
           ),
         ),
         SizedBox(height: height(10)),

@@ -21,6 +21,9 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   final AuthController _authController = Get.find();
+  final _formUser = GlobalKey<FormState>();
+  final _formPass = GlobalKey<FormState>();
+
   bool isLoading = false;
 
   void tapLogin() {
@@ -34,14 +37,20 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   Future<void> submitAuthentication() async {
-    setState(() {
-      isLoading = true;
-    });
-    await Future.delayed(Duration(seconds: 1));
-    _authController.sumbit();
-    setState(() {
-      isLoading = false;
-    });
+    if (!_authController.formPass.currentState!.validate() &&
+        !_authController.formUser.currentState!.validate()) {
+    } else if (!_authController.formPass.currentState!.validate() ||
+        !_authController.formUser.currentState!.validate()) {
+    }  else {
+      setState(() {
+        isLoading = true;
+      });
+      await Future.delayed(Duration(seconds: 1));
+      _authController.sumbit();
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   @override

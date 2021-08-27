@@ -4,7 +4,7 @@ import 'package:tako_app/data/app_preferences.dart';
 import 'package:tako_app/models/userModel.dart';
 import 'package:tako_app/modules/splash/effects_screen.dart';
 import 'package:tako_app/util/common/show_toast.dart';
-
+import 'package:flutter/material.dart';
 import '../../app_pages.dart';
 
 class AuthController extends GetxController {
@@ -13,6 +13,10 @@ class AuthController extends GetxController {
   RxString name = ''.obs;
   RxString password = ''.obs;
 
+  final formUser = GlobalKey<FormState>();
+  final formPass = GlobalKey<FormState>();
+  final formRePass = GlobalKey<FormState>();
+
   var user = User().obs;
   List listUser = <User>[].obs;
   final database = FirebaseDatabase.instance.reference();
@@ -20,6 +24,7 @@ class AuthController extends GetxController {
   void sumbit() {
     if (isLogin.value == true) {
       login(
+        tag: 1,
         userN: username.value,
         passW: password.value,
       );
@@ -63,7 +68,7 @@ class AuthController extends GetxController {
     isLogin.value = true;
   }
 
-  Future<void> login({required String userN, required String passW}) async {
+  Future<void> login({required String userN, required String passW, required int tag}) async {
     await getAPiUserLogin(
       userNN: userN,
       passWW: passW,
@@ -73,12 +78,15 @@ class AuthController extends GetxController {
         passW == user.value.password) {
       Get.toNamed(Routes.EFFECT);
     } else {
+      if(tag == 1){
       showToast("Tài khoản hoặc mật khẩu không chính xác");
+      } else {
+        Get.toNamed(Routes.AUTH);
+      }
     }
   }
 
   Future<void> getAPiUserLogin({required String userNN, required String passWW}) async {
-    print('go login');
     await database.child('users').get().then(
       (event) {
         final data = Map<String, dynamic>.from(event.value);
@@ -124,5 +132,10 @@ class AuthController extends GetxController {
         );
       },
     );
+  }
+
+  Future<void> logout() async {
+    AppPreference().clear();
+    Get.offAllNamed(Routes.AUTH);
   }
 }
