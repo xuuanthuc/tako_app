@@ -13,6 +13,9 @@ abstract class AppFileName {
   static const String rider = "assets/images/rider.png";
   static const String dot = "assets/images/slide_dot.png";
   static const String forgot_password = "assets/images/forgot_pass.png";
+  static const String banner1 = "assets/images/banner_1.png";
+  static const String banner2 = "assets/images/banner_2.png";
+  static const String banner3 = "assets/images/banner_3.png";
   //effect
 
   static const String effect_1 = "assets/images/effects/d1.png";

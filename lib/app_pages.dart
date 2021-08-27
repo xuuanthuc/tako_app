@@ -49,6 +49,7 @@ class AppPages {
     GetPage(
       name: Routes.EFFECT,
       page: () => EffectScreen(),
+      binding: HomeBinding(),
     ),
   ];
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tako_app/app_pages.dart';
+import 'package:tako_app/modules/home/home_controller.dart';
 import 'package:tako_app/util/common/screen_util.dart';
 import 'package:tako_app/util/theme/app_colors.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,8 @@ class EffectScreen extends StatefulWidget {
 }
 
 class _EffectScreenState extends State<EffectScreen> {
+  final HomeController _homeController = Get.put(HomeController());
+
   int i = 1;
   @override
   void initState() {

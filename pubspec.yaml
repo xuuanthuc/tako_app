@@ -40,6 +40,9 @@ dependencies:
   fluttertoast: ^8.0.6
   firebase_database: ^7.2.0
   firebase_core: ^1.4.0
+  carousel_slider: ^4.0.0
+  shimmer: ^2.0.0
+  transparent_image: ^2.0.0
 
 dev_dependencies:
   flutter_test:
