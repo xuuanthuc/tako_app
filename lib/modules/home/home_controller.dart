@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 
 import 'package:get/get.dart';
 import 'package:tako_app/models/brand_model.dart';
+import 'package:tako_app/util/common/logger.dart';
 
 class HomeController extends GetxController {
   final database = FirebaseDatabase.instance.reference();
@@ -9,11 +10,13 @@ class HomeController extends GetxController {
   RxString pathBanner2 = ''.obs;
   RxString pathBanner3 = ''.obs;
   RxBool isLoading = false.obs;
-  RxList listBrands = <Brand>[].obs;
-  RxList listBranchs = <Branch>[].obs;
+  var listBrands = <Brand>[].obs;
+  var listBranchs = <Branch>[].obs;
+  var listMenu = <MenuItem>[].obs;
   var branch = Branch().obs;
 
   RxString labelBrand = ''.obs;
+  RxString thumbnailBrand = ''.obs;
 
   //TODO: Banner
   Future<void> getBanner() async {
@@ -32,10 +35,15 @@ class HomeController extends GetxController {
 
   //TODO: Brand: tocotoco, hightland, lotte, royalte, dingtea.....
 
-  void getInfoBrand({required String brand}) {
-    database.child('brands/$brand/brandName').once().then((brandName) {
+  void getInfoBrand({required String brand}) async {
+    isLoading.value = true;
+    await database.child('brands/$brand/brandName').once().then((brandName) {
       labelBrand.value = brandName.value;
     });
+    await database.child('brands/$brand/thumbnail').once().then((thumbnail) {
+      thumbnailBrand.value = thumbnail.value;
+    });
+    isLoading.value = false;
   }
 
   Future<void> getBranchOfBrand({required String brand}) async {
@@ -47,12 +55,47 @@ class HomeController extends GetxController {
           (key, value) {
             list.add(Branch(
               id: key,
+              key: brand,
               branchName: value['branchName'],
+              address: value['address'],
+              district: value['district'],
             ));
-            print(value['branchName']);
+            Logger.info(value['branchName']);
           },
         );
         listBranchs.value = list;
+      },
+    );
+  }
+
+  Future<void> getMenuOfBranch({
+    required String brand,
+    required String idBranch,
+    required String branchName,
+    required String branchAddress,
+    required String branchDistrict,
+  }) async {
+    print('brands/$brand/branchs/$idBranch/menu');
+    await database.child('brands/$brand/branchs/$idBranch/menu').get().then(
+      (event) {
+        final data = Map<String, dynamic>.from(event.value);
+        var list = <MenuItem>[];
+        data.forEach(
+          (key, value) {
+            list.add(MenuItem(
+              keyBranch: idBranch,
+              keyRoot: brand,
+              id: key,
+              item: value['item'],
+              price: value['price'],
+              branchName: branchName,
+              address: branchAddress,
+              district: branchDistrict,
+            ));
+            Logger.info(value['item']);
+          },
+        );
+        listMenu.value = list;
       },
     );
   }
@@ -62,13 +105,15 @@ class HomeController extends GetxController {
       (event) {
         final data = Map<String, dynamic>.from(event.value);
         var list = <Brand>[];
-        data.forEach((key, value) {
-            print(key);
+        data.forEach(
+          (key, value) {
+            Logger.info(key);
             list.add(Brand(
-              key: key,
-              brandName: value['brandName'],
-              thumbnail: value['thumbnail'],
-            ));
+                key: key,
+                brandName: value['brandName'],
+                thumbnail: value['thumbnail'],
+                closeTime: value['closeTime'],
+                openTime: value['openTime']));
           },
         );
         listBrands.value = list;
@@ -76,13 +121,36 @@ class HomeController extends GetxController {
     );
   }
 
-  Future<void> setNewBranchOfBrand({required String brand}) async {
+  Future<void> setNewBranchOfBrand(
+      {required String brand,
+      required String name,
+      required String address,
+      required String district}) async {
     final newBranch = <String, dynamic>{
-      'branchName': 'Hello 1',
-      'latitude': 21.212323423,
-      'longtitude': 123.123124325,
+      'branchName': name,
+      'address': address,
+      'district': district,
     };
     await database.child('brands/$brand/branchs').push().set(newBranch);
+  }
+
+  Future<void> setNewMenuOfBranch(
+      {required String key, required String brand}) async {
+    final newMenu = <String, dynamic>{
+      'item': 'Sua chua Thanh long hat re',
+      'price': '42.0000',
+    };
+    await database.child('brands/$brand/branchs/$key/menu').push().set(newMenu);
+  }
+
+  Future<void> updateInfoBrand(
+      {required String brand, required String name}) async {
+    final newMenu = <String, dynamic>{
+      'brandName': name,
+      'openTime': '8:00',
+      'closeTime': '22:00',
+    };
+    await database.child('brands/$brand/').update(newMenu);
   }
 
   Future<void> setNewBrand() async {

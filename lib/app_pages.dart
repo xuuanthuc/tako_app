@@ -5,6 +5,8 @@ import 'package:tako_app/modules/authentication/pages/forgot_password.dart';
 import 'package:tako_app/modules/home/home_binding.dart';
 import 'package:tako_app/modules/home/pages/home_page.dart';
 import 'package:tako_app/modules/home/pages/brands/listview_brands_page.dart';
+import 'package:tako_app/modules/menu/pages/menu_page.dart';
+import 'package:tako_app/modules/menu/pay_controller.dart';
 import 'package:tako_app/modules/splash/effects_screen.dart';
 import 'package:tako_app/modules/splash/first_intro_screen.dart';
 import 'modules/home/pages/branchs/listview_branchs_of_brand.dart';
@@ -19,6 +21,7 @@ abstract class Routes {
   static const EFFECT  = '/effects-screen';
   static const LISTBRANDS  = '/list-brands';
   static const BRANCHS_OF_BRAND  = '/list-branchs-of-brand';
+  static const MENU_ITEM  = '/list_menu_item-of-branch';
   static const SETTING = '/setting';
 }
 
@@ -64,6 +67,11 @@ class AppPages {
       name: Routes.BRANCHS_OF_BRAND,
       page: () => ListBranchsOfBrandPage(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: Routes.MENU_ITEM,
+      page: () => MenuItemOfBranchPage(),
+      bindings: [HomeBinding(),PayBinding()]
     ),
   ];
 }

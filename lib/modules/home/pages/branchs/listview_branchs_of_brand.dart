@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tako_app/app_pages.dart';
+import 'package:tako_app/modules/common/lazy_load_widget.dart';
 import 'package:tako_app/modules/common/widgets/appbar_design.dart';
 import 'package:tako_app/modules/home/home_controller.dart';
 import 'package:tako_app/modules/home/pages/branchs/widgets/item_branchs_of_list_brand.dart';
@@ -18,16 +20,29 @@ class ListBranchsOfBrandPage extends StatelessWidget {
       backgroundColor: white,
       appBar: appbarDesign(),
       body: Obx(
-        () => ListView.builder(
-          itemBuilder: (context, index) {
-            return ItemBranchOfList(
-              // ontap: () => _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[index].key),
-              label: _homeController.listBranchs.value[index].branchName,
-              // image: _homeController.listBrands.value[index].thumbnail,
-            );
-          },
-          itemCount: _homeController.listBranchs.length,
-        ),
+        () => _homeController.isLoading == true
+            ? LazyLoad()
+            : ListView.builder(
+                itemBuilder: (context, index) {
+                  return ItemBranchOfList(
+                    ontap: (){
+                      _homeController.getMenuOfBranch(
+                      brand: _homeController.listBranchs.value[index].key ?? "",
+                      idBranch: _homeController.listBranchs.value[index].id?? "",
+                      branchName:_homeController.listBranchs.value[index].branchName?? "",
+                      branchAddress: _homeController.listBranchs.value[index].address?? "",
+                      branchDistrict: _homeController.listBranchs.value[index].district?? "",
+                    );
+                    Get.toNamed(Routes.MENU_ITEM);
+                    },
+                    label: _homeController.listBranchs.value[index].branchName,
+                    address: _homeController.listBranchs.value[index].address,
+                    district: _homeController.listBranchs.value[index].district,
+                    image: _homeController.thumbnailBrand.value,
+                  );
+                },
+                itemCount: _homeController.listBranchs.length,
+              ),
       ),
     );
   }

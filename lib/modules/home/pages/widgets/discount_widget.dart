@@ -16,7 +16,7 @@ class discountEverydayWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => _homeController.isLoading.value == true ? Container() :Padding(
       padding:
-          EdgeInsets.symmetric(horizontal: width(16), vertical: height(35)),
+          EdgeInsets.symmetric(horizontal: width(16), vertical: height(25)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -53,7 +53,7 @@ class discountEverydayWidget extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: height(20),
+            height: height(5),
           ),
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,7 +65,7 @@ class discountEverydayWidget extends StatelessWidget {
                   brandName: _homeController.listBrands.value[0].brandName ?? "",
                   ontap: () {
                     _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[0].key ?? "");
-                    _homeController.getInfoBrand(brand: _homeController.listBrands.value[0].key);
+                    _homeController.getInfoBrand(brand: _homeController.listBrands.value[0].key ?? "");
                     Get.toNamed(Routes.BRANCHS_OF_BRAND);
                   },
                 ),
@@ -79,7 +79,7 @@ class discountEverydayWidget extends StatelessWidget {
                           _homeController.listBrands.value[1].brandName ?? "",
                       ontap: () {
                         _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[1].key ?? "");
-                        _homeController.getInfoBrand(brand: _homeController.listBrands.value[1].key);
+                        _homeController.getInfoBrand(brand: _homeController.listBrands.value[1].key ?? "");
                         Get.toNamed(Routes.BRANCHS_OF_BRAND);
                       },
                     ),
@@ -94,7 +94,7 @@ class discountEverydayWidget extends StatelessWidget {
                           _homeController.listBrands.value[2].brandName ?? "",
                       ontap: () {
                         _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[2].key ?? "");
-                        _homeController.getInfoBrand(brand: _homeController.listBrands.value[2].key);
+                        _homeController.getInfoBrand(brand: _homeController.listBrands.value[2].key ?? "");
                         Get.toNamed(Routes.BRANCHS_OF_BRAND);
                       },
                     ),
@@ -118,11 +118,14 @@ class discountEverydayWidget extends StatelessWidget {
       child: Container(
         width: width(w),
         height: height(h),
+        color: Colors.transparent,
         child: Stack(
           children: [
             Container(
               width: width(w),
               height: height(h),
+              color: Colors.transparent,
+
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(radius(5)),
                   child:  Image.network(
@@ -133,7 +136,10 @@ class discountEverydayWidget extends StatelessWidget {
             Container(
               width: width(w),
               height: height(h),
+
               decoration: BoxDecoration(
+                color: Colors.transparent,
+
                 borderRadius: BorderRadius.circular(radius(5)),
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,

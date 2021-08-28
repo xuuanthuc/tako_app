@@ -10,6 +10,7 @@ AppBar AppBarDesign({required VoidCallback ontap}) {
         textStyle: TextStyle(fontSize: 23, color: orange),
       ),
     ),
+    automaticallyImplyLeading: false,
     centerTitle: false,
     backgroundColor: white,
     elevation: 0,

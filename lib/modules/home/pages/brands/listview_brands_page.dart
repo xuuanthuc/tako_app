@@ -22,9 +22,9 @@ class ListBrandsPage extends StatelessWidget {
           return BrandItem(
             ontap: () {
               _homeController.getBranchOfBrand(
-                brand: _homeController.listBrands.value[index].key,
+                brand: _homeController.listBrands.value[index].key ?? "",
               );
-              _homeController.getInfoBrand(brand: _homeController.listBrands.value[index].key);
+              _homeController.getInfoBrand(brand: _homeController.listBrands.value[index].key ?? "");
               Get.toNamed(Routes.BRANCHS_OF_BRAND);
             },
             label: _homeController.listBrands.value[index].brandName,
