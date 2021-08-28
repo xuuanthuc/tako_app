@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                     height: 300,
                     color: Colors.red,
                     child: TextButton(
-                      onPressed: ()=> _homeController.getBrandOf(brand: LocaleKeys.key_royal_tea),
+                      onPressed: ()=> _homeController.setNewBranchOfBrand(brand: LocaleKeys.key_highland_coffee),
                       child: Text("New branchs"),
                     ),
                   ),

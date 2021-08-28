@@ -42,7 +42,7 @@ class AppPages {
     GetPage(
       name: Routes.SPLASH,
       page: () => SplashPage(),
-      binding: AuthBinding(),
+      // binding: AuthBinding(),
     ),
     GetPage(
       name: Routes.INTRO_FIRST_SCREEN,

@@ -10,11 +10,10 @@ class discountEverydayWidget extends StatelessWidget {
   discountEverydayWidget({Key? key}) : super(key: key);
 
   final HomeController _homeController = Get.find();
-  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() =>  Padding(
+    return Obx(() => _homeController.isLoading.value == true ? Container() :Padding(
       padding:
           EdgeInsets.symmetric(horizontal: width(16), vertical: height(35)),
       child: Column(
@@ -59,10 +58,10 @@ class discountEverydayWidget extends StatelessWidget {
                 showBrandCustom(
                   h: 226,
                   w: 186,
-                  image: _homeController.listBrands[0].thumbnail ?? "",
-                  brandName: _homeController.listBrands[0].brandName ?? "",
+                  image: _homeController.listBrands.value[0].thumbnail ?? "",
+                  brandName: _homeController.listBrands.value[0].brandName ?? "",
                   ontap: () {
-                    _homeController.getBranchOfBrand(brand: _homeController.listBrands[1].key ?? "");
+                    _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[1].key ?? "");
                   },
                 ),
                 Column(
@@ -70,9 +69,9 @@ class discountEverydayWidget extends StatelessWidget {
                     showBrandCustom(
                       h: 108,
                       w: 186,
-                      image: _homeController.listBrands[1].thumbnail ?? "",
+                      image: _homeController.listBrands.value[1].thumbnail ?? "",
                       brandName:
-                          _homeController.listBrands[1].brandName ?? "",
+                          _homeController.listBrands.value[1].brandName ?? "",
                       ontap: () {},
                     ),
                     SizedBox(
@@ -81,9 +80,9 @@ class discountEverydayWidget extends StatelessWidget {
                     showBrandCustom(
                       h: 108,
                       w: 186,
-                      image: _homeController.listBrands[2].thumbnail ?? "",
+                      image: _homeController.listBrands.value[2].thumbnail ?? "",
                       brandName:
-                          _homeController.listBrands[2].brandName ?? "",
+                          _homeController.listBrands.value[2].brandName ?? "",
                       ontap: () {},
                     ),
                   ],
