@@ -4,9 +4,10 @@ import 'package:tako_app/modules/authentication/pages/auth_page.dart';
 import 'package:tako_app/modules/authentication/pages/forgot_password.dart';
 import 'package:tako_app/modules/home/home_binding.dart';
 import 'package:tako_app/modules/home/pages/home_page.dart';
-import 'package:tako_app/modules/home/pages/listview_branchs_page.dart';
+import 'package:tako_app/modules/home/pages/brands/listview_brands_page.dart';
 import 'package:tako_app/modules/splash/effects_screen.dart';
 import 'package:tako_app/modules/splash/first_intro_screen.dart';
+import 'modules/home/pages/branchs/listview_branchs_of_brand.dart';
 import 'modules/splash/splash.dart';
 
 abstract class Routes {
@@ -16,7 +17,8 @@ abstract class Routes {
   static const AUTH = '/auth_screen';
   static const FORGOT_PASS = '/forgot-password-screen';
   static const EFFECT  = '/effects-screen';
-  static const LISTBRANCHS  = '/list-branchs-of-brand';
+  static const LISTBRANDS  = '/list-brands';
+  static const BRANCHS_OF_BRAND  = '/list-branchs-of-brand';
   static const SETTING = '/setting';
 }
 
@@ -51,11 +53,16 @@ class AppPages {
     GetPage(
       name: Routes.EFFECT,
       page: () => EffectScreen(),
-      // binding: HomeBinding(),
+      binding: HomeBinding(),
     ),
     GetPage(
-      name: Routes.LISTBRANCHS,
-      page: () => ListBranchsPage(),
+      name: Routes.LISTBRANDS,
+      page: () => ListBrandsPage(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: Routes.BRANCHS_OF_BRAND,
+      page: () => ListBranchsOfBrandPage(),
       binding: HomeBinding(),
     ),
   ];

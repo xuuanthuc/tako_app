@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tako_app/app_pages.dart';
 import 'package:tako_app/modules/common/lazy_load_widget.dart';
 import 'package:tako_app/util/common/screen_util.dart';
 import 'package:tako_app/util/theme/app_colors.dart';
@@ -28,14 +29,16 @@ class discountEverydayWidget extends StatelessWidget {
                     textStyle: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: size(20),
-                  color: lowBlack,
+                  color: orange,
                 )),
               ),
               TextButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(Routes.LISTBRANDS);
+                },
                 icon: Icon(
                   Icons.arrow_drop_down_circle_outlined,
-                  color: orange,
+                  color: lowBlack,
                   size: size(18),
                 ),
                 label: Text(
@@ -44,7 +47,7 @@ class discountEverydayWidget extends StatelessWidget {
                       textStyle: TextStyle(
                           fontSize: size(14),
                           fontWeight: FontWeight.w700,
-                          color: orange)),
+                          color: lowBlack)),
                 ),
               )
             ],
@@ -61,7 +64,9 @@ class discountEverydayWidget extends StatelessWidget {
                   image: _homeController.listBrands.value[0].thumbnail ?? "",
                   brandName: _homeController.listBrands.value[0].brandName ?? "",
                   ontap: () {
-                    _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[1].key ?? "");
+                    _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[0].key ?? "");
+                    _homeController.getInfoBrand(brand: _homeController.listBrands.value[0].key);
+                    Get.toNamed(Routes.BRANCHS_OF_BRAND);
                   },
                 ),
                 Column(
@@ -72,7 +77,11 @@ class discountEverydayWidget extends StatelessWidget {
                       image: _homeController.listBrands.value[1].thumbnail ?? "",
                       brandName:
                           _homeController.listBrands.value[1].brandName ?? "",
-                      ontap: () {},
+                      ontap: () {
+                        _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[1].key ?? "");
+                        _homeController.getInfoBrand(brand: _homeController.listBrands.value[1].key);
+                        Get.toNamed(Routes.BRANCHS_OF_BRAND);
+                      },
                     ),
                     SizedBox(
                       height: 10,
@@ -83,7 +92,11 @@ class discountEverydayWidget extends StatelessWidget {
                       image: _homeController.listBrands.value[2].thumbnail ?? "",
                       brandName:
                           _homeController.listBrands.value[2].brandName ?? "",
-                      ontap: () {},
+                      ontap: () {
+                        _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[2].key ?? "");
+                        _homeController.getInfoBrand(brand: _homeController.listBrands.value[2].key);
+                        Get.toNamed(Routes.BRANCHS_OF_BRAND);
+                      },
                     ),
                   ],
                 )
@@ -121,13 +134,14 @@ class discountEverydayWidget extends StatelessWidget {
               width: width(w),
               height: height(h),
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(radius(5)),
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   // 10% of the width, so there are ten blinds.
                   colors: <Color>[
                     Colors.white.withOpacity(0.0),
-                    Colors.black87,
+                    Colors.black54,
                   ],
                   // red to yellow
                   tileMode:

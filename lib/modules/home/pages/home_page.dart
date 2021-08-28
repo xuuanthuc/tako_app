@@ -15,8 +15,8 @@ import 'package:tako_app/util/theme/app_colors.dart';
 import 'package:tako_app/util/theme/app_theme.dart';
 
 class HomePage extends StatelessWidget {
-  // final HomeController _homeController = Get.find();
-  final HomeController _homeController = Get.put(HomeController());
+  final HomeController _homeController = Get.find();
+  // final HomeController _homeController = Get.put(HomeController());
 
   //
   // final AuthController _authController = Get.find();
@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                     height: 300,
                     color: Colors.red,
                     child: TextButton(
-                      onPressed: ()=> _homeController.setNewBranchOfBrand(brand: LocaleKeys.key_highland_coffee),
+                      onPressed: ()=> _homeController.setNewBranchOfBrand(brand: LocaleKeys.key_royal_tea),
                       child: Text("New branchs"),
                     ),
                   ),

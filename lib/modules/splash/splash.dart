@@ -65,7 +65,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   Future<void> runIntro() async {
-    await Future.delayed(Duration(milliseconds: 1500));
+    await Future.delayed(Duration(milliseconds: 1000));
     for (double i = roundSize; i <= 242; i = i + 1) {
       await Future.delayed(Duration(milliseconds: 2));
       setState(() {
@@ -90,20 +90,20 @@ class _SplashPageState extends State<SplashPage> {
         }
       });
     }
-    await Future.delayed(Duration(milliseconds: 800));
+    await Future.delayed(Duration(milliseconds: 400));
     for (double i = positionRounedLeft; i <= 270; i = i + 1.1) {
       await Future.delayed(Duration(microseconds: 1000));
       setState(() {
         positionRounedLeft = i;
         if(roundSize >= 20){
-          roundSize =  roundSize - 1.5;
+          roundSize =  roundSize - 1.4;
         }
         if(positionRounedBottom <= 488){
           positionRounedBottom = positionRounedBottom + 1;
         }
       });
       }
-    await Future.delayed(Duration(milliseconds: 500));
+    await Future.delayed(Duration(milliseconds: 600));
     for(double i = roundSize; i <= 1500 ; i = i + 1){
       await Future.delayed(Duration(microseconds: 700));
       setState(() {

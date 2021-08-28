@@ -13,6 +13,8 @@ class HomeController extends GetxController {
   RxList listBranchs = <Branch>[].obs;
   var branch = Branch().obs;
 
+  RxString labelBrand = ''.obs;
+
   //TODO: Banner
   Future<void> getBanner() async {
     isLoading.value = true;
@@ -30,9 +32,9 @@ class HomeController extends GetxController {
 
   //TODO: Brand: tocotoco, hightland, lotte, royalte, dingtea.....
 
-  Future<void> getBrandOf({required String brand}) async {
-    await database.child('brands/$brand/brandName').once().then((value) {
-      print(value.value);
+  void getInfoBrand({required String brand}) {
+    database.child('brands/$brand/brandName').once().then((brandName) {
+      labelBrand.value = brandName.value;
     });
   }
 
