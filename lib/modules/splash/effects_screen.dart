@@ -12,7 +12,7 @@ class EffectScreen extends StatefulWidget {
 }
 
 class _EffectScreenState extends State<EffectScreen> {
-  final HomeController _homeController = Get.put(HomeController());
+  // final HomeController _homeController = Get.put(HomeController());
 
   int i = 1;
   @override

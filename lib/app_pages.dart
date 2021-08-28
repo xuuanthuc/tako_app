@@ -4,6 +4,7 @@ import 'package:tako_app/modules/authentication/pages/auth_page.dart';
 import 'package:tako_app/modules/authentication/pages/forgot_password.dart';
 import 'package:tako_app/modules/home/home_binding.dart';
 import 'package:tako_app/modules/home/pages/home_page.dart';
+import 'package:tako_app/modules/home/pages/listview_branchs_page.dart';
 import 'package:tako_app/modules/splash/effects_screen.dart';
 import 'package:tako_app/modules/splash/first_intro_screen.dart';
 import 'modules/splash/splash.dart';
@@ -15,6 +16,7 @@ abstract class Routes {
   static const AUTH = '/auth_screen';
   static const FORGOT_PASS = '/forgot-password-screen';
   static const EFFECT  = '/effects-screen';
+  static const LISTBRANCHS  = '/list-branchs-of-brand';
   static const SETTING = '/setting';
 }
 
@@ -49,6 +51,11 @@ class AppPages {
     GetPage(
       name: Routes.EFFECT,
       page: () => EffectScreen(),
+      // binding: HomeBinding(),
+    ),
+    GetPage(
+      name: Routes.LISTBRANCHS,
+      page: () => ListBranchsPage(),
       binding: HomeBinding(),
     ),
   ];

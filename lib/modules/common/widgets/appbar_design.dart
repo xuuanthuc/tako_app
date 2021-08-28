@@ -7,7 +7,7 @@ AppBar AppBarDesign({required VoidCallback ontap}) {
     title: Text(
       'FOOD DELIVERY !',
       style: GoogleFonts.bungee(
-        textStyle: TextStyle(fontSize: 25, color: orange),
+        textStyle: TextStyle(fontSize: 23, color: orange),
       ),
     ),
     centerTitle: false,

@@ -7,6 +7,7 @@ import 'package:tako_app/modules/home/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:tako_app/modules/home/pages/widgets/carousel_slider.dart';
 import 'package:tako_app/modules/home/pages/widgets/category_selection_widget.dart';
+import 'package:tako_app/modules/home/pages/widgets/discount_widget.dart';
 import 'package:tako_app/modules/home/pages/widgets/search_widget.dart';
 import 'package:tako_app/util/common/screen_util.dart';
 import 'package:tako_app/util/constants/locale_keys.dart';
@@ -14,7 +15,8 @@ import 'package:tako_app/util/theme/app_colors.dart';
 import 'package:tako_app/util/theme/app_theme.dart';
 
 class HomePage extends StatelessWidget {
-  final HomeController _homeController = Get.find();
+  // final HomeController _homeController = Get.find();
+  final HomeController _homeController = Get.put(HomeController());
 
   //
   // final AuthController _authController = Get.find();
@@ -38,9 +40,22 @@ class HomePage extends StatelessWidget {
                   SizedBox(height: height(65)),
                   CarouselSliderDesign(),
                   CategorySelectionDesgin(),
+                  discountEverydayWidget(),
                   Container(
                     height: 300,
                     color: Colors.red,
+                    child: TextButton(
+                      onPressed: ()=> _homeController.getAllBrand(),
+                      child: Text("Get Brand"),
+                    ),
+                  ),
+                  Container(
+                    height: 300,
+                    color: Colors.red,
+                    child: TextButton(
+                      onPressed: ()=> _homeController.getBrandOf(brand: LocaleKeys.key_royal_tea),
+                      child: Text("New branchs"),
+                    ),
                   ),
                   Container(
                     height: 300,
@@ -60,5 +75,7 @@ class HomePage extends StatelessWidget {
           ],
         ));
   }
+
+
 
 }
