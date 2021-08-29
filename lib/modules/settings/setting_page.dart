@@ -32,17 +32,29 @@ class SettingScreen extends StatelessWidget {
             children: [
               cardNameCustom(),
               Divider(),
+              SizedBox(
+                height: height(10),
+              ),
               ListSettingOption(
                 label: 'Yêu thích',
                 onPressed: () {},
+              ),
+              SizedBox(
+                height: height(10),
               ),
               ListSettingOption(
                 label: 'Lịch sử',
                 onPressed: () {},
               ),
+              SizedBox(
+                height: height(10),
+              ),
               ListSettingOption(
                 label: 'Trung tâm trợ giúp',
                 onPressed: () {},
+              ),
+              SizedBox(
+                height: height(10),
               ),
               ListSettingOption(
                 label: 'Đăng xuất',
