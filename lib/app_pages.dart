@@ -6,6 +6,7 @@ import 'package:tako_app/modules/home/home_binding.dart';
 import 'package:tako_app/modules/home/pages/home_page.dart';
 import 'package:tako_app/modules/home/pages/brands/listview_brands_page.dart';
 import 'package:tako_app/modules/order/order_page/order_page.dart';
+import 'package:tako_app/modules/settings/setting_page.dart';
 import 'package:tako_app/modules/splash/effects_screen.dart';
 import 'package:tako_app/modules/splash/first_intro_screen.dart';
 import 'modules/home/pages/branchs/listview_branchs_of_brand.dart';
@@ -79,6 +80,11 @@ class AppPages {
         name: Routes.ORDER,
         page: () => OrderScreen(),
         bindings: [PayBinding(), AuthBinding()],
+    ),
+    GetPage(
+      name: Routes.SETTING,
+      page: () => SettingScreen(),
+      bindings: [PayBinding(), AuthBinding(),HomeBinding()],
     ),
   ];
 }

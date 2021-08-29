@@ -92,7 +92,7 @@ class _SplashPageState extends State<SplashPage> {
     }
     await Future.delayed(Duration(milliseconds: 400));
     for (double i = positionRounedLeft; i <= 270; i = i + 1.1) {
-      await Future.delayed(Duration(microseconds: 1000));
+      await Future.delayed(Duration(microseconds: 900));
       setState(() {
         positionRounedLeft = i;
         if(roundSize >= 20){
