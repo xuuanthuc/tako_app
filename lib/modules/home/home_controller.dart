@@ -75,6 +75,7 @@ class HomeController extends GetxController {
     required String branchAddress,
     required String branchDistrict,
   }) async {
+    isLoading.value = true;
     print('brands/$brand/branchs/$idBranch/menu');
     await database.child('brands/$brand/branchs/$idBranch/menu').get().then(
       (event) {
@@ -88,16 +89,18 @@ class HomeController extends GetxController {
               id: key,
               item: value['item'],
               price: value['price'],
+              image: value['image'],
               branchName: branchName,
               address: branchAddress,
               district: branchDistrict,
             ));
-            Logger.info(value['item']);
+            Logger.info("${value['item']}: ID: ${key}");
           },
         );
         listMenu.value = list;
       },
     );
+    isLoading.value = false;
   }
 
   Future<void> getAllBrand() async {
@@ -137,10 +140,11 @@ class HomeController extends GetxController {
   Future<void> setNewMenuOfBranch(
       {required String key, required String brand}) async {
     final newMenu = <String, dynamic>{
-      'item': 'Sua chua Thanh long hat re',
-      'price': '42.0000',
+      'item': 'Hồng Long Xoài Trân Châu Baby',
+      'image': 'https://tocotocotea.com/wp-content/uploads/2021/01/ezgif.com-gif-maker-1.jpg',
+      'price': '22.0000',
     };
-    await database.child('brands/$brand/branchs/$key/menu').push().set(newMenu);
+    await database.child('brands/$brand/branchs/$key/order').push().set(newMenu);
   }
 
   Future<void> updateInfoBrand(

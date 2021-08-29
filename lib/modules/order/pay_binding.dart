@@ -1,7 +1,6 @@
-import 'package:get/get.dart';
-import 'package:tako_app/data/repository/home_repository.dart';
-import 'package:tako_app/modules/menu/pay_binding.dart';
 
+import 'package:get/get.dart';
+import 'package:tako_app/modules/order/pay_controller.dart';
 
 class PayBinding extends Bindings {
   @override

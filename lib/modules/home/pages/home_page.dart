@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         backgroundColor: white,
         appBar: AppBarDesign(ontap: () {
-          print('open menu');
+          print('open order');
         }),
         body: WillPopScope(
           onWillPop: _onBackPressed,

@@ -13,7 +13,6 @@ SliverToBoxAdapter InfoBranchAction() {
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
-
               children: [
                 Text('Thời gian mở cửa',
                   style: GoogleFonts.roboto(
@@ -59,7 +58,8 @@ SliverToBoxAdapter InfoBranchAction() {
                       color: lowBlack,
                       fontWeight: FontWeight.w500,
                     ),
-                  ),),
+                  ),
+                ),
               ],
             ),
           ],
