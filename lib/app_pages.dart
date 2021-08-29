@@ -78,7 +78,7 @@ class AppPages {
     GetPage(
         name: Routes.ORDER,
         page: () => OrderScreen(),
-        bindings: [PayBinding()],
+        bindings: [PayBinding(), AuthBinding()],
     ),
   ];
 }

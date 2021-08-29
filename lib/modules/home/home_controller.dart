@@ -144,7 +144,7 @@ class HomeController extends GetxController {
       'image': 'https://tocotocotea.com/wp-content/uploads/2021/01/ezgif.com-gif-maker-1.jpg',
       'price': '22.0000',
     };
-    await database.child('brands/$brand/branchs/$key/order').push().set(newMenu);
+    await database.child('brands/$brand/branchs/$key/menu').push().set(newMenu);
   }
 
   Future<void> updateInfoBrand(

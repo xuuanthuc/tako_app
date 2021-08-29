@@ -1,103 +1,133 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tako_app/app_pages.dart';
+import 'package:tako_app/modules/authentication/auth_controller.dart';
+import 'package:tako_app/modules/common/lazy_load_widget.dart';
+import 'package:tako_app/modules/common/widgets/custom_button_design.dart';
 import 'package:tako_app/modules/common/widgets/input_decoration_design.dart';
+import 'package:tako_app/modules/order/order_page/widgets/order_success.dart';
 import 'package:tako_app/modules/order/pay_controller.dart';
 import 'package:tako_app/util/common/screen_util.dart';
+import 'package:tako_app/util/common/show_toast.dart';
 import 'package:tako_app/util/constants/app_image.dart';
 import 'package:tako_app/util/theme/app_colors.dart';
 
 class OrderScreen extends StatelessWidget {
   OrderScreen({Key? key}) : super(key: key);
   final PayController _payController = Get.find();
+  final AuthController _authController = Get.find();
+
+  TextEditingController _phoneTextController = TextEditingController();
+  TextEditingController _addressTextController = TextEditingController();
+
+  void order() async {
+    var isSuccess = await _payController.order(
+      phoneNumber: _phoneTextController.text,
+      address: _addressTextController.text,
+      nameUser: _authController.user.value.name,
+    );
+    if (isSuccess == true) {
+      Get.off(() => OrderSuccessScreen(), opaque: false);
+    } else {
+      showToast('Đặt hàng không thành công');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: white,
-      appBar: appbarDesign(),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(width(16)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  headerImage(),
-                  SizedBox(
-                    height: height(30),
-                  ),
-                  LabelAddress(),
-                  TextField(
-                    onChanged: (value) {},
-                    decoration: decorTextField('Nhập địa chỉ nhận hàng'),
-                  ),
-                  SizedBox(
-                    height: height(20),
-                  ),
-                  LabelPhoneNumber(),
-                  TextField(
-                    onChanged: (value) {},
-                    decoration:
-                        decorTextField('Nhập số điện thoại liên hệ nhận hàng'),
-                  ),
-                  SizedBox(
-                    height: height(60),
-                  ),
-                  LabelOrder(),
-                  SizedBox(
-                    height: height(20),
-                  ),
-                  OrderItemDesgin(),
-                  SizedBox(
-                    height: height(20),
-                  ),
-                  DetailInfoOrder(),
-                  SizedBox(
-                    height: height(29),
-                  ),
-                  Text(
-                    ' Hình thức thanh toán',
-                    style: GoogleFonts.roboto(
-                        textStyle: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: size(16),
-                      color: lowBlack,
-                    )),
-                  ),
-                  SizedBox(
-                    height: height(20),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: orange,
-                      borderRadius: BorderRadius.circular(radius(5)),
+    return Obx(
+      () => Scaffold(
+        backgroundColor: white,
+        appBar: appbarDesign(),
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(width(16)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    headerImage(),
+                    SizedBox(
+                      height: height(30),
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: width(30), vertical: height(10)),
-                      child: Text(
-                        'Tiền mặt',
-                        style: TextStyle(
-                          fontSize: size(14),
-                          color: white,
+                    LabelAddress(),
+                    TextField(
+                      controller: _addressTextController,
+                      decoration: decorTextField('Nhập địa chỉ nhận hàng'),
+                    ),
+                    SizedBox(
+                      height: height(20),
+                    ),
+                    LabelPhoneNumber(),
+                    TextField(
+                      controller: _phoneTextController,
+                      decoration: decorTextField(
+                          'Nhập số điện thoại liên hệ nhận hàng'),
+                    ),
+                    SizedBox(
+                      height: height(60),
+                    ),
+                    LabelOrder(),
+                    SizedBox(
+                      height: height(20),
+                    ),
+                    OrderItemDesgin(),
+                    SizedBox(
+                      height: height(20),
+                    ),
+                    DetailInfoOrder(),
+                    SizedBox(
+                      height: height(29),
+                    ),
+                    Text(
+                      ' Hình thức thanh toán',
+                      style: GoogleFonts.roboto(
+                          textStyle: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: size(16),
+                        color: lowBlack,
+                      )),
+                    ),
+                    SizedBox(
+                      height: height(20),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: orange,
+                        borderRadius: BorderRadius.circular(radius(5)),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: width(30), vertical: height(10)),
+                        child: Text(
+                          'Tiền mặt',
+                          style: TextStyle(
+                            fontSize: size(14),
+                            color: white,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height(90),
-                  ),
-                ],
+                    SizedBox(
+                      height: height(90),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          bottomButtonOrder(),
-        ],
+            bottomButtonOrder(),
+            Visibility(
+              child: LazyLoad(),
+              visible: _payController.isLoading.value,
+            ),
+          ],
+        ),
       ),
     );
   }
+
   Align bottomButtonOrder() {
     return Align(
       alignment: Alignment.bottomCenter,
@@ -113,7 +143,7 @@ class OrderScreen extends StatelessWidget {
                 height: height(75),
                 width: double.infinity,
                 child: TextButton.icon(
-                  onPressed: (){},
+                  onPressed: () => order(),
                   icon: Icon(
                     Icons.shopping_cart_outlined,
                     color: white,
