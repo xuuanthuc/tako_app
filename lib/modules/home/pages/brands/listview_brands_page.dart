@@ -20,12 +20,16 @@ class ListBrandsPage extends StatelessWidget {
       body: ListView.builder(
         itemBuilder: (context, index) {
           return BrandItem(
-            ontap: () {
-              _homeController.getBranchOfBrand(
-                brand: _homeController.listBrands.value[index].key ?? "",
+            ontap: () async {
+              _homeController.getInfoBrand(brand: _homeController.listBrands.value[index].brandId ?? "");
+              var isSuccess = await _homeController.getBranchOfBrand(
+                brand: _homeController.listBrands.value[index].brandId ?? "",
               );
-              _homeController.getInfoBrand(brand: _homeController.listBrands.value[index].key ?? "");
-              Get.toNamed(Routes.BRANCHS_OF_BRAND);
+              if(isSuccess) {
+                Get.toNamed(Routes.BRANCHS_OF_BRAND);
+              } else {
+                print('list rong');
+              }
             },
             label: _homeController.listBrands.value[index].brandName,
             image: _homeController.listBrands.value[index].thumbnail,

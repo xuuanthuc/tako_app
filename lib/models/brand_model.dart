@@ -1,5 +1,5 @@
 class Brand {
-  String? key;
+  String? brandId;
   String? brandName;
   String? thumbnail;
   String? closeTime;
@@ -10,75 +10,76 @@ class Brand {
       {this.brandName,
       this.thumbnail,
       this.branchs,
-      this.key,
+      this.brandId,
       this.closeTime,
       this.openTime});
 
-  factory Brand.fromMap(Map<String, dynamic> map) {
-    List<Branch> branchs = [];
-    if (map['branchs'] != null) {
-      map['branchs'].forEach((v) {
-        branchs.add(Branch.fromMap(v));
-      });
-    }
-    return Brand(
-        key: map['key'] ?? '',
-        brandName: map['brandName'] ?? '',
-        closeTime: map['closeTime'] ?? '',
-        openTime: map['openTime'] ?? '',
-        thumbnail: map['thumbnail'] ?? '',
-        branchs: branchs);
-  }
+// factory Brand.fromMap(Map<String, dynamic> map) {
+//   List<Branch> branchs = [];
+//   if (map['branchs'] != null) {
+//     map['branchs'].forEach((v) {
+//       branchs.add(Branch.fromMap(v));
+//     });
+//   }
+//   return Brand(
+//       brandId: map['key'] ?? '',
+//       brandName: map['brandName'] ?? '',
+//       closeTime: map['closeTime'] ?? '',
+//       openTime: map['openTime'] ?? '',
+//       thumbnail: map['thumbnail'] ?? '',
+//       branchs: branchs);
+// }
 }
 
 class Branch {
   String? branchName;
   String? address;
   String? district;
-  String? key;
-  String? id;
+  String? brandId;
+  String? branchId;
   List<MenuItem>? menuItem;
 
   Branch(
       {this.branchName,
-      this.key,
-      this.id,
+      this.branchId,
+      this.brandId,
       this.address,
       this.district,
       this.menuItem});
 
-  factory Branch.fromMap(Map<String, dynamic> map) {
-    return Branch(
-      id: map['id'],
-      branchName: map['branchName'],
-      address: map['address'],
-      district: map['district'],
-    );
-  }
+// factory Branch.fromMap(Map<String, dynamic> map) {
+//   return Branch(
+//     id: map['id'],
+//     branchName: map['branchName'],
+//     address: map['address'],
+//     district: map['district'],
+//   );
+// }
 }
 
 class MenuItem {
-  String? keyRoot;
-  String? keyBranch;
+  String? brandId;
+  String? branchId;
   String? item;
   String? price;
-  String? id;
+  String? menuId;
   String? image;
   String? branchName;
   String? address;
   String? district;
+  String? type;
 
-  MenuItem({
-    this.item,
-    this.id,
-    this.price,
-    this.image,
-    this.keyBranch,
-    this.keyRoot,
-    this.branchName,
-    this.address,
-    this.district,
-  });
+  MenuItem(
+      {this.item,
+      this.menuId,
+      this.price,
+      this.image,
+      this.branchId,
+      this.brandId,
+      this.branchName,
+      this.address,
+      this.district,
+      this.type});
 
 // factory MenuItem.fromMap(Map<String, dynamic> map) {
 //   return MenuItem(

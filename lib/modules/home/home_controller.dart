@@ -46,61 +46,75 @@ class HomeController extends GetxController {
     isLoading.value = false;
   }
 
-  Future<void> getBranchOfBrand({required String brand}) async {
-    await database.child('brands/$brand/branchs').get().then(
-      (event) {
-        final data = Map<String, dynamic>.from(event.value);
-        var list = <Branch>[];
-        data.forEach(
-          (key, value) {
-            list.add(Branch(
-              id: key,
-              key: brand,
-              branchName: value['branchName'],
-              address: value['address'],
-              district: value['district'],
-            ));
-            Logger.info(value['branchName']);
-          },
-        );
-        listBranchs.value = list;
-      },
-    );
+  Future<bool> getBranchOfBrand({required String brand}) async {
+    try{
+      await database.child('brands/$brand/branchs').get().then(
+            (event) {
+          final data = Map<String, dynamic>.from(event.value);
+          var list = <Branch>[];
+          data.forEach(
+                (key, value) {
+              list.add(Branch(
+                branchId: key,
+                brandId: brand,
+                branchName: value['branchName'],
+                address: value['address'],
+                district: value['district'],
+              ));
+              Logger.info(value['branchName']);
+            },
+          );
+          listBranchs.value = list;
+        },
+      );
+      return true;
+    }catch(e){
+      return false;
+    }
   }
 
-  Future<void> getMenuOfBranch({
+  Future<bool> getMenuOfBranch({
     required String brand,
     required String idBranch,
     required String branchName,
     required String branchAddress,
     required String branchDistrict,
   }) async {
-    isLoading.value = true;
     print('brands/$brand/branchs/$idBranch/menu');
-    await database.child('brands/$brand/branchs/$idBranch/menu').get().then(
-      (event) {
-        final data = Map<String, dynamic>.from(event.value);
-        var list = <MenuItem>[];
-        data.forEach(
-          (key, value) {
-            list.add(MenuItem(
-              keyBranch: idBranch,
-              keyRoot: brand,
-              id: key,
-              item: value['item'],
-              price: value['price'],
-              image: value['image'],
-              branchName: branchName,
-              address: branchAddress,
-              district: branchDistrict,
-            ));
-            Logger.info("${value['item']}: ID: ${key}");
-          },
-        );
-        listMenu.value = list;
-      },
-    );
-    isLoading.value = false;
+    try{
+      isLoading.value = true;
+      await database.child('brands/$brand/branchs/$idBranch/menu').get().then(
+            (event) {
+          final data = Map<String, dynamic>.from(event.value);
+          var list = <MenuItem>[];
+          data.forEach(
+                (key, value) {
+              list.add(MenuItem(
+                branchId: idBranch,
+                brandId: brand,
+                menuId: key,
+                item: value['item'],
+                price: value['price'],
+                image: value['image'],
+                type: value['type'],
+                branchName: branchName,
+                address: branchAddress,
+                district: branchDistrict,
+              ));
+              Logger.info("${value['item']}: ID: ${key}");
+            },
+          );
+          listMenu.value = list;
+        },
+      );
+      isLoading.value = false;
+      return true;
+    }catch(e){
+      print(e);
+      isLoading.value = false;
+      return false;
+    }
+
   }
 
   Future<void> getAllBrand() async {
@@ -112,7 +126,7 @@ class HomeController extends GetxController {
           (key, value) {
             Logger.info(key);
             list.add(Brand(
-                key: key,
+                brandId: key,
                 brandName: value['brandName'],
                 thumbnail: value['thumbnail'],
                 closeTime: value['closeTime'],
@@ -143,6 +157,7 @@ class HomeController extends GetxController {
       'item': 'Hồng Long Xoài Trân Châu Baby',
       'image': 'https://tocotocotea.com/wp-content/uploads/2021/01/ezgif.com-gif-maker-1.jpg',
       'price': '22.0000',
+      'type': 'milkTea',
     };
     await database.child('brands/$brand/branchs/$key/menu').push().set(newMenu);
   }

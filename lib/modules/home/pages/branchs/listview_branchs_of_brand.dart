@@ -25,15 +25,19 @@ class ListBranchsOfBrandPage extends StatelessWidget {
             : ListView.builder(
                 itemBuilder: (context, index) {
                   return ItemBranchOfList(
-                    ontap: (){
-                      _homeController.getMenuOfBranch(
-                      brand: _homeController.listBranchs.value[index].key ?? "",
-                      idBranch: _homeController.listBranchs.value[index].id?? "",
+                    ontap: ()async {
+                      var isSuccess = await _homeController.getMenuOfBranch(
+                      brand: _homeController.listBranchs.value[index].brandId ?? "",
+                      idBranch: _homeController.listBranchs.value[index].branchId?? "",
                       branchName:_homeController.listBranchs.value[index].branchName?? "",
                       branchAddress: _homeController.listBranchs.value[index].address?? "",
                       branchDistrict: _homeController.listBranchs.value[index].district?? "",
                     );
-                    Get.toNamed(Routes.MENU_ITEM);
+                      if(isSuccess){
+                        Get.toNamed(Routes.MENU_ITEM);
+                      } else {
+                        print('khong co list');
+                      }
                     },
                     label: _homeController.listBranchs.value[index].branchName,
                     address: _homeController.listBranchs.value[index].address,

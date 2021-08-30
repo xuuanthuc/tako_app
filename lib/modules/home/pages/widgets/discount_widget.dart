@@ -64,8 +64,8 @@ class discountEverydayWidget extends StatelessWidget {
                   image: _homeController.listBrands.value[0].thumbnail ?? "",
                   brandName: _homeController.listBrands.value[0].brandName ?? "",
                   ontap: () {
-                    _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[0].key ?? "");
-                    _homeController.getInfoBrand(brand: _homeController.listBrands.value[0].key ?? "");
+                    _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[0].brandId ?? "");
+                    _homeController.getInfoBrand(brand: _homeController.listBrands.value[0].brandId ?? "");
                     Get.toNamed(Routes.BRANCHS_OF_BRAND);
                   },
                 ),
@@ -78,8 +78,8 @@ class discountEverydayWidget extends StatelessWidget {
                       brandName:
                           _homeController.listBrands.value[1].brandName ?? "",
                       ontap: () {
-                        _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[1].key ?? "");
-                        _homeController.getInfoBrand(brand: _homeController.listBrands.value[1].key ?? "");
+                        _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[1].brandId ?? "");
+                        _homeController.getInfoBrand(brand: _homeController.listBrands.value[1].brandId ?? "");
                         Get.toNamed(Routes.BRANCHS_OF_BRAND);
                       },
                     ),
@@ -93,8 +93,8 @@ class discountEverydayWidget extends StatelessWidget {
                       brandName:
                           _homeController.listBrands.value[2].brandName ?? "",
                       ontap: () {
-                        _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[2].key ?? "");
-                        _homeController.getInfoBrand(brand: _homeController.listBrands.value[2].key ?? "");
+                        _homeController.getBranchOfBrand(brand: _homeController.listBrands.value[2].brandId ?? "");
+                        _homeController.getInfoBrand(brand: _homeController.listBrands.value[2].brandId ?? "");
                         Get.toNamed(Routes.BRANCHS_OF_BRAND);
                       },
                     ),

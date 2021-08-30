@@ -36,26 +36,26 @@ class FormImport extends StatelessWidget {
               hintText: 'drictric',
             ),
           ),
-          ElevatedButton(
-              onPressed: () => _homeController.setNewBranchOfBrand(
-                    brand: LocaleKeys.key_toco,
-                    name: _nameController.text,
-                    address: _addressController.text,
-                    district: _districtController.text,
-                  ),
-              child: Text('import')
-          ),
-          ElevatedButton(
-              onPressed: () => _homeController.setNewMenuOfBranch(
-                key: '-MiBgxrKWes9uznq30tq',
-                brand: LocaleKeys.key_toco,
-              ),
-              child: Text('import order ')
-          ),
-          ElevatedButton(
-              onPressed: () => _homeController.updateInfoBrand(brand: LocaleKeys.key_highland_coffee, name: _nameController.text),
-              child: Text('Update Info ')
-          ),
+          // ElevatedButton(
+          //     onPressed: () => _homeController.setNewBranchOfBrand(
+          //           brand: LocaleKeys.key_toco,
+          //           name: _nameController.text,
+          //           address: _addressController.text,
+          //           district: _districtController.text,
+          //         ),
+          //     child: Text('import')
+          // ),
+          // ElevatedButton(
+          //     onPressed: () => _homeController.setNewMenuOfBranch(
+          //       key: '-MiBgxrKWes9uznq30tq',
+          //       brand: LocaleKeys.key_toco,
+          //     ),
+          //     child: Text('import order ')
+          // ),
+          // ElevatedButton(
+          //     onPressed: () => _homeController.updateInfoBrand(brand: LocaleKeys.key_highland_coffee, name: _nameController.text),
+          //     child: Text('Update Info ')
+          // ),
         ],
       ),
     );

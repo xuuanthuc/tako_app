@@ -79,6 +79,7 @@ class PayController extends GetxController {
       isLoading.value = false;
       return true;
     } catch (e) {
+      isLoading.value = false;
       return false;
     }
   }

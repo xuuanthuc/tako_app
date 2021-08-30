@@ -20,12 +20,14 @@ class bottomSheetOrder extends StatefulWidget {
       required this.itemImage,
       required this.itemPrice,
       required this.itemName,
+      required this.type,
       required this.ontap})
       : super(key: key);
   VoidCallback ontap;
   String itemName;
   String itemImage;
   String itemPrice;
+  String type;
 
   @override
   _bottomSheetOrderState createState() => _bottomSheetOrderState();
@@ -125,285 +127,297 @@ class _bottomSheetOrderState extends State<bottomSheetOrder> {
                       ),
                       ItemCountWidget(),
                       //Chọn size
-                      Container(
-                        color: white,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            labelTextSelectOption('Chọn Size'),
-                            Column(
-                              children: [
-                                ListTile(
-                                  title: textOptionSelect('Size M'),
-                                  leading: Radio<SizeOption>(
-                                    activeColor: orange,
-                                    value: SizeOption.sizeM,
-                                    groupValue: sizeCharacter,
-                                    onChanged: (SizeOption? value) {
-                                      setState(() {
-                                        sizeCharacter = value;
-                                        selectSize(sizeCharacter);
-                                      });
-                                    },
+                      Visibility(
+                        visible: widget.type == LocaleKeys.coffee ? true : false || widget.type == LocaleKeys.milkTea ? true :false,
+                        child: Container(
+                          color: white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              labelTextSelectOption('Chọn Size'),
+                              Column(
+                                children: [
+                                  ListTile(
+                                    title: textOptionSelect('Size M'),
+                                    leading: Radio<SizeOption>(
+                                      activeColor: orange,
+                                      value: SizeOption.sizeM,
+                                      groupValue: sizeCharacter,
+                                      onChanged: (SizeOption? value) {
+                                        setState(() {
+                                          sizeCharacter = value;
+                                          selectSize(sizeCharacter);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('0đ'),
                                   ),
-                                  trailing: textOptionSelect('0đ'),
-                                ),
-                                ListTile(
-                                  title: textOptionSelect('Size L'),
-                                  leading: Radio<SizeOption>(
-                                    activeColor: orange,
-                                    value: SizeOption.sizeL,
-                                    groupValue: sizeCharacter,
-                                    onChanged: (SizeOption? value) {
-                                      setState(() {
-                                        sizeCharacter = value;
-                                        selectSize(sizeCharacter);
-                                      });
-                                    },
+                                  ListTile(
+                                    title: textOptionSelect('Size L'),
+                                    leading: Radio<SizeOption>(
+                                      activeColor: orange,
+                                      value: SizeOption.sizeL,
+                                      groupValue: sizeCharacter,
+                                      onChanged: (SizeOption? value) {
+                                        setState(() {
+                                          sizeCharacter = value;
+                                          selectSize(sizeCharacter);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('6,000đ'),
                                   ),
-                                  trailing: textOptionSelect('6,000đ'),
-                                ),
-                              ],
-                            )
-                          ],
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       //Chọn đường
-                      Container(
-                        color: white,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            labelTextSelectOption('Chọn đường'),
-                            Column(
-                              children: [
-                                ListTile(
-                                  title: textOptionSelect('100% đường'),
-                                  leading: Radio<SugarOption>(
-                                    activeColor: orange,
-                                    value: SugarOption.p100,
-                                    groupValue: sugarCharacter,
-                                    onChanged: (SugarOption? value) {
-                                      setState(() {
-                                        sugarCharacter = value;
-                                        print(value);
-                                        selectSugar(sugarCharacter);
-                                      });
-                                    },
+                      Visibility(
+                        visible: widget.type == LocaleKeys.milkTea ? true :false,
+                        child: Container(
+                          color: white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              labelTextSelectOption('Chọn đường'),
+                              Column(
+                                children: [
+                                  ListTile(
+                                    title: textOptionSelect('100% đường'),
+                                    leading: Radio<SugarOption>(
+                                      activeColor: orange,
+                                      value: SugarOption.p100,
+                                      groupValue: sugarCharacter,
+                                      onChanged: (SugarOption? value) {
+                                        setState(() {
+                                          sugarCharacter = value;
+                                          print(value);
+                                          selectSugar(sugarCharacter);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('0đ'),
                                   ),
-                                  trailing: textOptionSelect('0đ'),
-                                ),
-                                ListTile(
-                                  title: textOptionSelect('70% đường'),
-                                  leading: Radio<SugarOption>(
-                                    activeColor: orange,
-                                    value: SugarOption.p70,
-                                    groupValue: sugarCharacter,
-                                    onChanged: (SugarOption? value) {
-                                      setState(() {
-                                        sugarCharacter = value;
-                                        selectSugar(sugarCharacter);
-                                      });
-                                    },
+                                  ListTile(
+                                    title: textOptionSelect('70% đường'),
+                                    leading: Radio<SugarOption>(
+                                      activeColor: orange,
+                                      value: SugarOption.p70,
+                                      groupValue: sugarCharacter,
+                                      onChanged: (SugarOption? value) {
+                                        setState(() {
+                                          sugarCharacter = value;
+                                          selectSugar(sugarCharacter);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('0đ'),
                                   ),
-                                  trailing: textOptionSelect('0đ'),
-                                ),
-                                ListTile(
-                                  title: textOptionSelect('50% đường'),
-                                  leading: Radio<SugarOption>(
-                                    activeColor: orange,
-                                    value: SugarOption.p50,
-                                    groupValue: sugarCharacter,
-                                    onChanged: (SugarOption? value) {
-                                      setState(() {
-                                        sugarCharacter = value;
-                                        selectSugar(sugarCharacter);
-                                      });
-                                    },
+                                  ListTile(
+                                    title: textOptionSelect('50% đường'),
+                                    leading: Radio<SugarOption>(
+                                      activeColor: orange,
+                                      value: SugarOption.p50,
+                                      groupValue: sugarCharacter,
+                                      onChanged: (SugarOption? value) {
+                                        setState(() {
+                                          sugarCharacter = value;
+                                          selectSugar(sugarCharacter);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('0đ'),
                                   ),
-                                  trailing: textOptionSelect('0đ'),
-                                ),
-                                ListTile(
-                                  title: textOptionSelect('30% đường'),
-                                  leading: Radio<SugarOption>(
-                                    activeColor: orange,
-                                    value: SugarOption.p30,
-                                    groupValue: sugarCharacter,
-                                    onChanged: (SugarOption? value) {
-                                      setState(() {
-                                        sugarCharacter = value;
-                                        selectSugar(sugarCharacter);
-                                      });
-                                    },
+                                  ListTile(
+                                    title: textOptionSelect('30% đường'),
+                                    leading: Radio<SugarOption>(
+                                      activeColor: orange,
+                                      value: SugarOption.p30,
+                                      groupValue: sugarCharacter,
+                                      onChanged: (SugarOption? value) {
+                                        setState(() {
+                                          sugarCharacter = value;
+                                          selectSugar(sugarCharacter);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('0đ'),
                                   ),
-                                  trailing: textOptionSelect('0đ'),
-                                ),
-                              ],
-                            )
-                          ],
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       //Chọn đá
-                      Container(
-                        color: white,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            labelTextSelectOption('Chọn đá'),
-                            Column(
-                              children: [
-                                ListTile(
-                                  title: textOptionSelect('100% đá'),
-                                  leading: Radio<IceOption>(
-                                    activeColor: orange,
-                                    value: IceOption.p100,
-                                    groupValue: iceCharacter,
-                                    onChanged: (IceOption? value) {
-                                      setState(() {
-                                        iceCharacter = value;
-                                        selectIce(iceCharacter);
-                                      });
-                                    },
+                      Visibility(
+                        visible: widget.type == LocaleKeys.milkTea ? true :false,
+                        child: Container(
+                          color: white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              labelTextSelectOption('Chọn đá'),
+                              Column(
+                                children: [
+                                  ListTile(
+                                    title: textOptionSelect('100% đá'),
+                                    leading: Radio<IceOption>(
+                                      activeColor: orange,
+                                      value: IceOption.p100,
+                                      groupValue: iceCharacter,
+                                      onChanged: (IceOption? value) {
+                                        setState(() {
+                                          iceCharacter = value;
+                                          selectIce(iceCharacter);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('0đ'),
                                   ),
-                                  trailing: textOptionSelect('0đ'),
-                                ),
-                                ListTile(
-                                  title: textOptionSelect('70% đá'),
-                                  leading: Radio<IceOption>(
-                                    activeColor: orange,
-                                    value: IceOption.p70,
-                                    groupValue: iceCharacter,
-                                    onChanged: (IceOption? value) {
-                                      setState(() {
-                                        iceCharacter = value;
-                                        selectIce(iceCharacter);
-                                      });
-                                    },
+                                  ListTile(
+                                    title: textOptionSelect('70% đá'),
+                                    leading: Radio<IceOption>(
+                                      activeColor: orange,
+                                      value: IceOption.p70,
+                                      groupValue: iceCharacter,
+                                      onChanged: (IceOption? value) {
+                                        setState(() {
+                                          iceCharacter = value;
+                                          selectIce(iceCharacter);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('0đ'),
                                   ),
-                                  trailing: textOptionSelect('0đ'),
-                                ),
-                                ListTile(
-                                  title: textOptionSelect('50% đá'),
-                                  leading: Radio<IceOption>(
-                                    activeColor: orange,
-                                    value: IceOption.p50,
-                                    groupValue: iceCharacter,
-                                    onChanged: (IceOption? value) {
-                                      setState(() {
-                                        iceCharacter = value;
-                                        selectIce(iceCharacter);
-                                      });
-                                    },
+                                  ListTile(
+                                    title: textOptionSelect('50% đá'),
+                                    leading: Radio<IceOption>(
+                                      activeColor: orange,
+                                      value: IceOption.p50,
+                                      groupValue: iceCharacter,
+                                      onChanged: (IceOption? value) {
+                                        setState(() {
+                                          iceCharacter = value;
+                                          selectIce(iceCharacter);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('0đ'),
                                   ),
-                                  trailing: textOptionSelect('0đ'),
-                                ),
-                                ListTile(
-                                  title: textOptionSelect('30% đá'),
-                                  leading: Radio<IceOption>(
-                                    activeColor: orange,
-                                    value: IceOption.p30,
-                                    groupValue: iceCharacter,
-                                    onChanged: (IceOption? value) {
-                                      setState(() {
-                                        iceCharacter = value;
-                                        selectIce(iceCharacter);
-                                      });
-                                    },
+                                  ListTile(
+                                    title: textOptionSelect('30% đá'),
+                                    leading: Radio<IceOption>(
+                                      activeColor: orange,
+                                      value: IceOption.p30,
+                                      groupValue: iceCharacter,
+                                      onChanged: (IceOption? value) {
+                                        setState(() {
+                                          iceCharacter = value;
+                                          selectIce(iceCharacter);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('0đ'),
                                   ),
-                                  trailing: textOptionSelect('0đ'),
-                                ),
-                              ],
-                            )
-                          ],
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       //Chọn topping
-                      Container(
-                        color: white,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            labelTextSelectOption('Chọn topping'),
-                            Column(
-                              children: [
-                                ListTile(
-                                  title: textOptionSelect('Trân Châu'),
-                                  leading: Radio<Topping>(
-                                    activeColor: orange,
-                                    value: Topping.pearl,
-                                    groupValue: toppingChar,
-                                    onChanged: (Topping? value) {
-                                      setState(() {
-                                        toppingChar = value;
-                                        selectTopping(toppingChar);
-                                      });
-                                    },
+                      Visibility(
+                        visible: widget.type == LocaleKeys.milkTea ? true :false,
+                        child: Container(
+                          color: white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              labelTextSelectOption('Chọn topping'),
+                              Column(
+                                children: [
+                                  ListTile(
+                                    title: textOptionSelect('Trân Châu'),
+                                    leading: Radio<Topping>(
+                                      activeColor: orange,
+                                      value: Topping.pearl,
+                                      groupValue: toppingChar,
+                                      onChanged: (Topping? value) {
+                                        setState(() {
+                                          toppingChar = value;
+                                          selectTopping(toppingChar);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('5,000đ'),
                                   ),
-                                  trailing: textOptionSelect('5,000đ'),
-                                ),
-                                ListTile(
-                                  title: textOptionSelect('Thạch dừa'),
-                                  leading: Radio<Topping>(
-                                    activeColor: orange,
-                                    value: Topping.coconutJelly,
-                                    groupValue: toppingChar,
-                                    onChanged: (Topping? value) {
-                                      setState(() {
-                                        toppingChar = value;
-                                        selectTopping(toppingChar);
-                                      });
-                                    },
+                                  ListTile(
+                                    title: textOptionSelect('Thạch dừa'),
+                                    leading: Radio<Topping>(
+                                      activeColor: orange,
+                                      value: Topping.coconutJelly,
+                                      groupValue: toppingChar,
+                                      onChanged: (Topping? value) {
+                                        setState(() {
+                                          toppingChar = value;
+                                          selectTopping(toppingChar);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('5,000đ'),
                                   ),
-                                  trailing: textOptionSelect('5,000đ'),
-                                ),
-                                ListTile(
-                                  title: textOptionSelect('Thạch rau câu'),
-                                  leading: Radio<Topping>(
-                                    activeColor: orange,
-                                    value: Topping.grassJelly,
-                                    groupValue: toppingChar,
-                                    onChanged: (Topping? value) {
-                                      setState(() {
-                                        toppingChar = value;
-                                        selectTopping(toppingChar);
-                                      });
-                                    },
+                                  ListTile(
+                                    title: textOptionSelect('Thạch rau câu'),
+                                    leading: Radio<Topping>(
+                                      activeColor: orange,
+                                      value: Topping.grassJelly,
+                                      groupValue: toppingChar,
+                                      onChanged: (Topping? value) {
+                                        setState(() {
+                                          toppingChar = value;
+                                          selectTopping(toppingChar);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('5,000đ'),
                                   ),
-                                  trailing: textOptionSelect('5,000đ'),
-                                ),
-                                ListTile(
-                                  title: textOptionSelect('Kem Mousses'),
-                                  leading: Radio<Topping>(
-                                    activeColor: orange,
-                                    value: Topping.creamMousse,
-                                    groupValue: toppingChar,
-                                    onChanged: (Topping? value) {
-                                      setState(() {
-                                        toppingChar = value;
-                                        selectTopping(toppingChar);
-                                      });
-                                    },
+                                  ListTile(
+                                    title: textOptionSelect('Kem Mousses'),
+                                    leading: Radio<Topping>(
+                                      activeColor: orange,
+                                      value: Topping.creamMousse,
+                                      groupValue: toppingChar,
+                                      onChanged: (Topping? value) {
+                                        setState(() {
+                                          toppingChar = value;
+                                          selectTopping(toppingChar);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('8,000đ'),
                                   ),
-                                  trailing: textOptionSelect('8,000đ'),
-                                ),
-                                ListTile(
-                                  title: textOptionSelect('Trân châu trắng'),
-                                  leading: Radio<Topping>(
-                                    activeColor: orange,
-                                    value: Topping.whitePearl,
-                                    groupValue: toppingChar,
-                                    onChanged: (Topping? value) {
-                                      setState(() {
-                                        toppingChar = value;
-                                        selectTopping(toppingChar);
-                                      });
-                                    },
+                                  ListTile(
+                                    title: textOptionSelect('Trân châu trắng'),
+                                    leading: Radio<Topping>(
+                                      activeColor: orange,
+                                      value: Topping.whitePearl,
+                                      groupValue: toppingChar,
+                                      onChanged: (Topping? value) {
+                                        setState(() {
+                                          toppingChar = value;
+                                          selectTopping(toppingChar);
+                                        });
+                                      },
+                                    ),
+                                    trailing: textOptionSelect('8,000đ'),
                                   ),
-                                  trailing: textOptionSelect('8,000đ'),
-                                ),
-                              ],
-                            )
-                          ],
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       labelTextSelectOption('Lời nhắn cho cửa hàng'),

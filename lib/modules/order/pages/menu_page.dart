@@ -66,6 +66,9 @@ class MenuItemOfBranchPage extends StatelessWidget {
                                         itemPrice: _homeController
                                             .listMenu.value[index].price ??
                                             "",
+                                        type:  _homeController
+                                            .listMenu.value[index].type ??
+                                            "",
                                         ontap: (){}
                                       ),
                                       isScrollControlled: true,
