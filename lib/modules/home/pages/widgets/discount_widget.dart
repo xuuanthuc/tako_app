@@ -24,7 +24,7 @@ class discountEverydayWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Giảm giá mỗi ngày",
+                "Khám phá cùng bạn",
                 style: GoogleFonts.roboto(
                     textStyle: TextStyle(
                   fontWeight: FontWeight.w700,

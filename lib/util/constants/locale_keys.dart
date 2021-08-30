@@ -33,5 +33,8 @@ abstract class LocaleKeys {
   static const coconutJelly = "Thạch dừa";
   static const grassJelly = "Thạch rau câu";
   static const mousses = "Kem Mousses";
+  //type
+  static const milkTea = "milk-tea";
+  static const coffee = "coffee";
 
 }
