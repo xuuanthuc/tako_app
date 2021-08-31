@@ -36,7 +36,7 @@ class ListBranchsOfBrandPage extends StatelessWidget {
                       if(isSuccess){
                         Get.toNamed(Routes.MENU_ITEM);
                       } else {
-                        print('khong co list');
+                        Get.toNamed(Routes.EMPTY);
                       }
                     },
                     label: _homeController.listBranchs.value[index].branchName,

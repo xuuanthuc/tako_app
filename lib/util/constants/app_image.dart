@@ -19,6 +19,7 @@ abstract class AppFileName {
   static const String textfiled_img = "assets/images/field_image.png";
   static const String order_success = "assets/images/order_success.png";
   static const String avatar = "assets/images/avatar.png";
+  static const String empty = "assets/images/empty_img.png";
   //effect
 
   static const String effect_1 = "assets/images/effects/d1.png";

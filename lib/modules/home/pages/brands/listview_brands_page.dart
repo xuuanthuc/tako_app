@@ -28,7 +28,8 @@ class ListBrandsPage extends StatelessWidget {
               if(isSuccess) {
                 Get.toNamed(Routes.BRANCHS_OF_BRAND);
               } else {
-                print('list rong');
+                Get.toNamed(Routes.EMPTY);
+
               }
             },
             label: _homeController.listBrands.value[index].brandName,
