@@ -61,22 +61,6 @@ class HomePage extends StatelessWidget {
                     CarouselSliderDesign(),
                     CategorySelectionDesgin(),
                     discountEverydayWidget(),
-                    Container(
-                      height: 300,
-                      color: Colors.red,
-                      child: TextButton(
-                        onPressed: ()=> Get.to(()=>FormImport()),
-                        child: Text("New branchs"),
-                      ),
-                    ),
-                    Container(
-                      height: 300,
-                      color: Colors.red,
-                    ),
-                    Container(
-                      height: 300,
-                      color: Colors.red,
-                    ),
                   ],
                 ),
               ),
