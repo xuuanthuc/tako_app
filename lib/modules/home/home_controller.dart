@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 
 import 'package:get/get.dart';
 import 'package:tako_app/models/brand_model.dart';
+import 'package:tako_app/models/category_model.dart';
 import 'package:tako_app/util/common/logger.dart';
 
 class HomeController extends GetxController {
@@ -12,6 +13,7 @@ class HomeController extends GetxController {
   RxBool isLoading = false.obs;
   var listBrands = <Brand>[].obs;
   var listBranchs = <Branch>[].obs;
+  var listCategory = <CategoryModel>[].obs;
   var listMenu = <MenuItem>[].obs;
   var branch = Branch().obs;
 
@@ -138,47 +140,36 @@ class HomeController extends GetxController {
     );
   }
 
-  Future<void> setNewBranchOfBrand(
-      {required String brand,
-      required String name,
-      required String address,
-      required String district}) async {
-    final newBranch = <String, dynamic>{
-      'branchName': name,
-      'address': address,
-      'district': district,
-    };
-    await database.child('brands/$brand/branchs').push().set(newBranch);
+  Future<bool> getCategory({required String category}) async {
+    try{
+      database.child('category/$category/menu').get().then(
+            (event) {
+          final data = Map<String, dynamic>.from(event.value);
+          var list = <CategoryModel>[];
+          data.forEach(
+                (key, value) {
+              Logger.info(key);
+              list.add(
+                  CategoryModel(
+                      id: key,
+                      address: value['address'],
+                      description: value['description'],
+                      item: value['item'],
+                      imageUrl: value['imageUrl'],
+                      price: value['price']
+                  )
+              );
+            },
+          );
+          listCategory.value = list;
+        },
+      );
+      return true;
+    }catch (e){
+      return false;
+    }
   }
 
-  Future<void> setNewMenuOfBranch(
-      {required String key, required String brand}) async {
-    final newMenu = <String, dynamic>{
-      'item': 'Hồng Long Xoài Trân Châu Baby',
-      'image': 'https://tocotocotea.com/wp-content/uploads/2021/01/ezgif.com-gif-maker-1.jpg',
-      'price': '22.0000',
-      'type': 'milkTea',
-    };
-    await database.child('brands/$brand/branchs/$key/menu').push().set(newMenu);
-  }
-
-  Future<void> updateInfoBrand(
-      {required String brand, required String name}) async {
-    final newMenu = <String, dynamic>{
-      'brandName': name,
-      'openTime': '8:00',
-      'closeTime': '22:00',
-    };
-    await database.child('brands/$brand/').update(newMenu);
-  }
-
-  Future<void> setNewBrand() async {
-    final newBrand = {
-      'brands/royalTea/brandName': 'newBrand',
-      'brands/royalTea/thumbnail': 'hello',
-    };
-    await database.update(newBrand);
-  }
 
   @override
   void onInit() {

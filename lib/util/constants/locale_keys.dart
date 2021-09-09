@@ -39,4 +39,14 @@ abstract class LocaleKeys {
   static const food = "food";
 
 
+  static const nearYou = "nearYou";
+  static const rice = "rice";
+  static const noodle = "noodle";
+  static const chicken = "chicken";
+  static const snack = "snack";
+  static const drink = "drink";
+  static const bread = "bread";
+  static const healthy = "healthy";
+
+
 }

@@ -46,7 +46,6 @@ class ItemBranchOfList extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(radius(5)),
                           color: Colors.black38,
-
                         ),
                         child: Padding(
                           padding: EdgeInsets.all(height(10)),
@@ -67,11 +66,12 @@ class ItemBranchOfList extends StatelessWidget {
               ),
               SizedBox(height: height(10)),
               Text(
-                label!,
+                label!.toUpperCase(),
+                overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.roboto(
                   textStyle: TextStyle(
-                    fontSize: size(16),
-                    fontWeight: FontWeight.w700,
+                    fontSize: size(14),
+                    fontWeight: FontWeight.w800,
                     color: lowBlack,
                   ),
                 ),
@@ -79,6 +79,7 @@ class ItemBranchOfList extends StatelessWidget {
               SizedBox(height: height(5)),
               Text(
                 '$address, $district',
+                overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.roboto(
                   textStyle: TextStyle(
                     fontSize: size(12),

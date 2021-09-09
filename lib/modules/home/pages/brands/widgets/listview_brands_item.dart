@@ -35,7 +35,10 @@ class BrandItem extends StatelessWidget {
                 child: Container(
                   height: 40,
                   width: double.infinity,
-                  color: Colors.black38,
+                  decoration: BoxDecoration(
+                    color: Colors.black38,
+                    borderRadius: BorderRadius.circular(radius(5)),
+                  ),
                   child: Padding(
                     padding: EdgeInsets.all(height(12)),
                     child: Text(label!, textAlign: TextAlign.center ,style: GoogleFonts.bungee(

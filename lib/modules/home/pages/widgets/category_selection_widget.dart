@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tako_app/modules/home/home_controller.dart';
 import 'package:tako_app/util/common/screen_util.dart';
 import 'package:tako_app/util/constants/app_image.dart';
+import 'package:tako_app/util/constants/locale_keys.dart';
 import 'package:tako_app/util/theme/app_colors.dart';
 
 class CategorySelectionDesgin extends StatelessWidget {
   CategorySelectionDesgin({Key? key}) : super(key: key);
+  final HomeController _homeController = Get.find();
+
+  void getCategoryBy({required String category}) async {
+    var isSuccess = await _homeController.getCategory(category: category);
+    if(isSuccess){
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +31,25 @@ class CategorySelectionDesgin extends StatelessWidget {
               selecOption(
                 label: 'Gần Bạn',
                 image: AppFileName.effect_1,
-                ontap: () {},
+                ontap: () => getCategoryBy(category: LocaleKeys.nearYou),
               ),
               selecOption(
                 label: 'Cơm Xuất',
                 image: AppFileName.effect_2,
-                ontap: () {},
+                ontap: () => getCategoryBy(category: LocaleKeys.rice),
+
               ),
               selecOption(
                 label: 'Bún/Phở',
                 image: AppFileName.effect_3,
-                ontap: () {},
+                ontap: () => getCategoryBy(category: LocaleKeys.noodle),
+
               ),
               selecOption(
                 label: 'Gà Rán',
                 image: AppFileName.effect_4,
-                ontap: () {},
+                ontap: () => getCategoryBy(category: LocaleKeys.chicken),
+
               ),
             ],
           ),
@@ -46,22 +60,26 @@ class CategorySelectionDesgin extends StatelessWidget {
               selecOption(
                 label: 'Ăn Vặt',
                 image: AppFileName.effect_5,
-                ontap: () {},
+                ontap: () => getCategoryBy(category: LocaleKeys.snack),
+
               ),
               selecOption(
                 label: 'Đồ Uống',
                 image: AppFileName.effect_6,
-                ontap: () {},
+                ontap: () => getCategoryBy(category: LocaleKeys.drink),
+
               ),
               selecOption(
                 label: 'Bánh Mì',
                 image: AppFileName.effect_7,
-                ontap: () {},
+                ontap: () => getCategoryBy(category: LocaleKeys.bread),
+
               ),
               selecOption(
                 label: 'Healthy',
                 image: AppFileName.effect_8,
-                ontap: () {},
+                ontap: () => getCategoryBy(category: LocaleKeys.healthy),
+
               ),
             ],
           ),
