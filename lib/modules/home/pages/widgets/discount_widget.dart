@@ -14,7 +14,7 @@ class discountEverydayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => _homeController.isLoading.value == true ? Container() :Padding(
+    return Obx(() => _homeController.isLoading.value == true ? LazyLoad() :Padding(
       padding:
           EdgeInsets.symmetric(horizontal: width(16), vertical: height(25)),
       child: Column(

@@ -11,6 +11,7 @@ class HomeController extends GetxController {
   RxString pathBanner2 = ''.obs;
   RxString pathBanner3 = ''.obs;
   RxBool isLoading = false.obs;
+  RxBool isLoadingCategory = false.obs;
   var listBrands = <Brand>[].obs;
   var listBranchs = <Branch>[].obs;
   var listCategory = <CategoryModel>[].obs;
@@ -18,6 +19,7 @@ class HomeController extends GetxController {
   var branch = Branch().obs;
 
   RxString labelBrand = ''.obs;
+  RxString titleCategory = ''.obs;
   RxString thumbnailBrand = ''.obs;
 
   //TODO: Banner
@@ -142,6 +144,8 @@ class HomeController extends GetxController {
 
   Future<bool> getCategory({required String category}) async {
     try{
+      isLoadingCategory.value = true;
+      titleCategory.value = category;
       database.child('category/$category/menu').get().then(
             (event) {
           final data = Map<String, dynamic>.from(event.value);
@@ -152,6 +156,7 @@ class HomeController extends GetxController {
               list.add(
                   CategoryModel(
                       id: key,
+                      type: category,
                       address: value['address'],
                       description: value['description'],
                       item: value['item'],
@@ -164,8 +169,10 @@ class HomeController extends GetxController {
           listCategory.value = list;
         },
       );
+      isLoadingCategory.value = false;
       return true;
     }catch (e){
+      isLoadingCategory.value = false;
       return false;
     }
   }

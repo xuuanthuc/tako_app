@@ -27,7 +27,7 @@ class BrandItem extends StatelessWidget {
                     ),
                     child: Image.network(
                       image!,
-                      fit: BoxFit.fitHeight,
+                      fit: BoxFit.cover,
                     )),
               ),
               Align(

@@ -13,7 +13,7 @@ class EmptyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
-      appBar: appbarDesign(),
+      appBar: appbarDesign(''),
       body: Center(
         child: Column(
           children: [
@@ -50,7 +50,7 @@ class EmptyPage extends StatelessWidget {
   }
 }
 
-AppBar appbarDesign() {
+AppBar appbarDesign(String? title) {
   return AppBar(
     backgroundColor: white,
     elevation: 0,
@@ -62,5 +62,11 @@ AppBar appbarDesign() {
           Icons.arrow_back_ios,
           color: lowBlack,
         )),
+    title: Text('${title}',style: GoogleFonts.roboto(
+        textStyle: TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: size(20),
+          color: lowBlack,
+        ))),
   );
 }

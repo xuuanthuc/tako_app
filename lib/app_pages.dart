@@ -4,6 +4,7 @@ import 'package:tako_app/modules/authentication/pages/auth_page.dart';
 import 'package:tako_app/modules/authentication/pages/forgot_password.dart';
 import 'package:tako_app/modules/common/empty_page.dart';
 import 'package:tako_app/modules/home/home_binding.dart';
+import 'package:tako_app/modules/home/pages/category/list_category_item.dart';
 import 'package:tako_app/modules/home/pages/home_page.dart';
 import 'package:tako_app/modules/home/pages/brands/listview_brands_page.dart';
 import 'package:tako_app/modules/order/order_page/order_page.dart';
@@ -26,6 +27,7 @@ abstract class Routes {
   static const BRANCHS_OF_BRAND  = '/list-branchs-of-brand';
   static const MENU_ITEM  = '/list_menu_item-of-branch';
   static const ORDER  = '/order_item_page';
+  static const CATEGORY_ITEM  = '/category_item_page';
   static const SETTING = '/setting';
   static const EMPTY = '/empty-page';
 }
@@ -91,6 +93,10 @@ class AppPages {
     GetPage(
       name: Routes.EMPTY,
       page: () => EmptyPage(),
+    ),
+    GetPage(
+      name: Routes.CATEGORY_ITEM,
+      page: () => ListCategoryItem(),
     ),
   ];
 }

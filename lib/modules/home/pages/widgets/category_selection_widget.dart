@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tako_app/app_pages.dart';
+import 'package:tako_app/modules/common/lazy_load_widget.dart';
 import 'package:tako_app/modules/home/home_controller.dart';
 import 'package:tako_app/util/common/screen_util.dart';
 import 'package:tako_app/util/constants/app_image.dart';
@@ -14,6 +16,9 @@ class CategorySelectionDesgin extends StatelessWidget {
   void getCategoryBy({required String category}) async {
     var isSuccess = await _homeController.getCategory(category: category);
     if(isSuccess){
+      Get.toNamed(Routes.CATEGORY_ITEM);
+    } else {
+      Get.toNamed(Routes.EMPTY);
     }
   }
 
@@ -21,70 +26,79 @@ class CategorySelectionDesgin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Obx(() =>Padding(
       padding: EdgeInsets.symmetric(horizontal: width(16), vertical: height(24)),
-      child: Column(
+      child: Stack(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Column(
             children: [
-              selecOption(
-                label: 'Gần Bạn',
-                image: AppFileName.effect_1,
-                ontap: () => getCategoryBy(category: LocaleKeys.nearYou),
-              ),
-              selecOption(
-                label: 'Cơm Xuất',
-                image: AppFileName.effect_2,
-                ontap: () => getCategoryBy(category: LocaleKeys.rice),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  selecOption(
+                    label: 'Gần Bạn',
+                    image: AppFileName.effect_1,
+                    ontap: () => getCategoryBy(category: LocaleKeys.nearYou),
+                  ),
+                  selecOption(
+                    label: 'Cơm Xuất',
+                    image: AppFileName.effect_2,
+                    ontap: () => getCategoryBy(category: LocaleKeys.rice),
 
-              ),
-              selecOption(
-                label: 'Bún/Phở',
-                image: AppFileName.effect_3,
-                ontap: () => getCategoryBy(category: LocaleKeys.noodle),
+                  ),
+                  selecOption(
+                    label: 'Bún/Phở',
+                    image: AppFileName.effect_3,
+                    ontap: () => getCategoryBy(category: LocaleKeys.noodle),
 
-              ),
-              selecOption(
-                label: 'Gà Rán',
-                image: AppFileName.effect_4,
-                ontap: () => getCategoryBy(category: LocaleKeys.chicken),
+                  ),
+                  selecOption(
+                    label: 'Gà Rán',
+                    image: AppFileName.effect_4,
+                    ontap: () => getCategoryBy(category: LocaleKeys.chicken),
 
+                  ),
+                ],
+              ),
+              SizedBox(height: height(10),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  selecOption(
+                    label: 'Ăn Vặt',
+                    image: AppFileName.effect_5,
+                    ontap: () => getCategoryBy(category: LocaleKeys.snack),
+
+                  ),
+                  selecOption(
+                    label: 'Đồ Uống',
+                    image: AppFileName.effect_6,
+                    ontap: () => getCategoryBy(category: LocaleKeys.drink),
+
+                  ),
+                  selecOption(
+                    label: 'Bánh Mì',
+                    image: AppFileName.effect_7,
+                    ontap: () => getCategoryBy(category: LocaleKeys.bread),
+
+                  ),
+                  selecOption(
+                    label: 'Healthy',
+                    image: AppFileName.effect_8,
+                    ontap: () => getCategoryBy(category: LocaleKeys.healthy),
+
+                  ),
+                ],
               ),
             ],
           ),
-          SizedBox(height: height(10),),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              selecOption(
-                label: 'Ăn Vặt',
-                image: AppFileName.effect_5,
-                ontap: () => getCategoryBy(category: LocaleKeys.snack),
-
-              ),
-              selecOption(
-                label: 'Đồ Uống',
-                image: AppFileName.effect_6,
-                ontap: () => getCategoryBy(category: LocaleKeys.drink),
-
-              ),
-              selecOption(
-                label: 'Bánh Mì',
-                image: AppFileName.effect_7,
-                ontap: () => getCategoryBy(category: LocaleKeys.bread),
-
-              ),
-              selecOption(
-                label: 'Healthy',
-                image: AppFileName.effect_8,
-                ontap: () => getCategoryBy(category: LocaleKeys.healthy),
-
-              ),
-            ],
-          ),
+          Align(alignment: Alignment.center, child: Visibility(visible: _homeController.isLoadingCategory.value, child: Padding(
+            padding:  EdgeInsets.only(top: height(75)),
+            child: LazyLoad(),
+          ),)),
         ],
       ),
+    ),
     );
   }
 
