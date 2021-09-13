@@ -6,6 +6,7 @@ import 'package:tako_app/util/common/screen_util.dart';
 import 'package:tako_app/util/constants/locale_keys.dart';
 import 'package:tako_app/util/theme/app_colors.dart';
 
+import '../../../../app_pages.dart';
 import '../../home_controller.dart';
 
 class ListCategoryItem extends StatelessWidget {
@@ -28,7 +29,10 @@ class ListCategoryItem extends StatelessWidget {
               description: item.description ?? "",
               address: item.address ?? "",
               price: item.price ?? "",
-              ontap: () {},
+              ontap: () {
+                _homeController.categoryItem.value = item;
+                Get.toNamed(Routes.CATEGORY_ITEM_DETAIL);
+              },
             );
           },
           separatorBuilder: (context, index) {

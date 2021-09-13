@@ -16,6 +16,7 @@ class HomeController extends GetxController {
   var listBranchs = <Branch>[].obs;
   var listCategory = <CategoryModel>[].obs;
   var listMenu = <MenuItem>[].obs;
+  var categoryItem = CategoryModel().obs;
   var branch = Branch().obs;
 
   RxString labelBrand = ''.obs;
