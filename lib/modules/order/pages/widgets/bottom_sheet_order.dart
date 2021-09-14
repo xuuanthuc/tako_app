@@ -89,6 +89,7 @@ class _bottomSheetOrderState extends State<bottomSheetOrder> {
 
   void orderNow() async {
     await _payController.orderNow();
+    Get.back();
     Get.toNamed(Routes.ORDER);
   }
 
