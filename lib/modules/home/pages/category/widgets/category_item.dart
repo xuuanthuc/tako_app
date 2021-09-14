@@ -61,14 +61,12 @@ class ItemCategory extends StatelessWidget {
                       Text(
                         '${title}',
                         overflow: TextOverflow.ellipsis,
-
                         style: GoogleFonts.roboto(
                             fontSize: size(14),
                             color: lowBlack,
                             fontWeight: FontWeight.w500),
                       ),
                       SizedBox(height: height(7),),
-
                       Text(
                         '${description == "" ? '${price} đ' : description}',
                         overflow: TextOverflow.ellipsis,

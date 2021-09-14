@@ -112,8 +112,8 @@ class ItemDetailCategory extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      '${item.description}',
-                      maxLines: 5,
+                      '${item.description == "" ? 'Chưa có thông tin' : item.description}',
+                      maxLines: 15,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.roboto(
                           fontSize: size(16),
@@ -208,12 +208,16 @@ class ItemDetailCategory extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                 ),
                 width: width(414),
-                height: height(50),
+                height: height(60),
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
                   child: ElevatedButton(
                     onPressed: ()=> Get.toNamed(Routes.ORDER),
-                    child: Text('Đặt hàng ngay!'),
+                    child: Text('Đặt hàng ngay!',style: GoogleFonts.roboto(textStyle: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: size(18),
+                    )),
+                    ),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(orange),
                     ),
