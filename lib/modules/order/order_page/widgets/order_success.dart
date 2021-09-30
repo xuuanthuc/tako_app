@@ -52,7 +52,7 @@ class OrderSuccessScreen extends StatelessWidget {
                             Text('Kiểm tra đơn hàng của bạn trong tài khoản !'),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: width(50), vertical: height(20)),
-                              child: CustumButtonDesign(ontap: ()=> Get.offAllNamed(Routes.HOME), label: 'trang chủ'),
+                              child: CustumButtonDesign(ontap: ()=> Get.back(), label: 'Quay lại'),
                             ),
                           ],
                         ),
