@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tako_app/util/common/screen_util.dart';
+import 'package:tako_app/util/constants/app_image.dart';
 import 'package:tako_app/util/theme/app_colors.dart';
 
 Widget DesignSearchTextFieldWidget() {
@@ -48,23 +50,20 @@ Widget DesignSearchTextFieldWidget() {
             SizedBox(
               width: width(13),
             ),
-            Container(
-              height: height(35),
-              width: height(35),
-              decoration: BoxDecoration(
-                color: orange,
-                borderRadius: BorderRadius.circular(
-                  radius(5),
+            InkWell(
+              onTap: (){
+                print('search');
+              },
+              child: Container(
+                height: height(35),
+                width: height(35),
+                decoration: BoxDecoration(
+                  color: orange,
+                  borderRadius: BorderRadius.circular(
+                    radius(5),
+                  ),
                 ),
-              ),
-              child: IconButton(
-                onPressed: () {
-                  print("search");
-                },
-                icon: Icon(
-                  Icons.search_outlined,
-                  color: white,
-                ),
+                child: SvgPicture.asset(AppFileName.search_icon)
               ),
             ),
           ],

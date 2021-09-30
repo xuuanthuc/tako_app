@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tako_app/util/common/screen_util.dart';
+import 'package:tako_app/util/constants/app_image.dart';
 import 'package:tako_app/util/theme/app_colors.dart';
 
 class ItemCategory extends StatelessWidget {
@@ -96,7 +98,7 @@ class ItemCategory extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50),
                     color: white,
                   ),
-                  child: IconButton(icon: Icon(Icons.arrow_forward_ios_rounded),iconSize: 10, color: lowBlack, onPressed: ontap,),
+                  child: SvgPicture.asset(AppFileName.arrow_icon),
                 ),
                 SizedBox(width: width(15),),
               ],

@@ -32,4 +32,8 @@ abstract class AppFileName {
   static const String effect_8 = "assets/images/effects/d8.png";
 
 //svgs
+
+  static const String arrow_icon = "assets/svgs/arrow_icon.svg";
+  static const String search_icon = "assets/svgs/search_icon.svg";
+
 }
