@@ -14,11 +14,14 @@ import 'package:tako_app/modules/home/pages/widgets/category_selection_widget.da
 import 'package:tako_app/modules/home/pages/widgets/discount_widget.dart';
 import 'package:tako_app/modules/home/pages/widgets/form_test_import_data.dart';
 import 'package:tako_app/modules/home/pages/widgets/search_widget.dart';
+import 'package:tako_app/modules/home/pages/widgets/sugget_for_you.dart';
 import 'package:tako_app/util/common/screen_util.dart';
 import 'package:tako_app/util/common/show_toast.dart';
 import 'package:tako_app/util/constants/locale_keys.dart';
 import 'package:tako_app/util/theme/app_colors.dart';
 import 'package:tako_app/util/theme/app_theme.dart';
+
+import 'category/widgets/category_item.dart';
 
 class HomePage extends StatelessWidget {
   final HomeController _homeController = Get.find();
@@ -61,6 +64,7 @@ class HomePage extends StatelessWidget {
                     CarouselSliderDesign(),
                     CategorySelectionDesgin(),
                     discountEverydayWidget(),
+                    SuggetForYouWidget()
                   ],
                 ),
               ),
@@ -72,7 +76,5 @@ class HomePage extends StatelessWidget {
           ),
         ));
   }
-
-
 
 }

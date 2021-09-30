@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:tako_app/models/brand_model.dart';
 import 'package:tako_app/models/category_model.dart';
 import 'package:tako_app/util/common/logger.dart';
+import 'package:tako_app/util/constants/locale_keys.dart';
 
 class HomeController extends GetxController {
   final database = FirebaseDatabase.instance.reference();
@@ -15,6 +16,7 @@ class HomeController extends GetxController {
   var listBrands = <Brand>[].obs;
   var listBranchs = <Branch>[].obs;
   var listCategory = <CategoryModel>[].obs;
+  var listSugget = <CategoryModel>[].obs;
   var listMenu = <MenuItem>[].obs;
   var categoryItem = CategoryModel().obs;
   var branch = Branch().obs;
@@ -179,11 +181,47 @@ class HomeController extends GetxController {
   }
 
 
+  Future<bool> getSuggetList({required String category}) async {
+    try{
+      isLoadingCategory.value = true;
+      titleCategory.value = category;
+      database.child('category/$category/menu').get().then(
+            (event) {
+          final data = Map<String, dynamic>.from(event.value);
+          var list = <CategoryModel>[];
+          data.forEach(
+                (key, value) {
+              Logger.info('Item Id: $key, path: category/$category/menu/$key}');
+              list.add(
+                  CategoryModel(
+                      id: key,
+                      type: category,
+                      address: value['address'],
+                      description: value['description'],
+                      item: value['item'],
+                      imageUrl: value['imageUrl'],
+                      price: value['price']
+                  )
+              );
+            },
+          );
+          listSugget.value = list;
+        },
+      );
+      isLoadingCategory.value = false;
+      return true;
+    }catch (e){
+      isLoadingCategory.value = false;
+      return false;
+    }
+  }
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     getAllBrand();
+    getSuggetList(category: LocaleKeys.sugget);
     getBanner();
   }
 }

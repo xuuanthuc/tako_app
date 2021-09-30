@@ -47,6 +47,7 @@ abstract class LocaleKeys {
   static const drink = "drink";
   static const bread = "bread";
   static const healthy = "healthy";
+  static const sugget = "sugget";
 
 
 }
