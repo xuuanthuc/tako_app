@@ -39,22 +39,13 @@ class SettingScreen extends StatelessWidget {
                 label: 'Yêu thích',
                 onPressed: () {},
               ),
-              SizedBox(
-                height: height(10),
-              ),
               ListSettingOption(
                 label: 'Lịch sử',
                 onPressed: () {},
               ),
-              SizedBox(
-                height: height(10),
-              ),
               ListSettingOption(
                 label: 'Trung tâm trợ giúp',
                 onPressed: () {},
-              ),
-              SizedBox(
-                height: height(10),
               ),
               ListSettingOption(
                 label: 'Đăng xuất',
@@ -67,18 +58,28 @@ class SettingScreen extends StatelessWidget {
 
   Widget ListSettingOption(
       {required String label, required VoidCallback onPressed}) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: width(8)),
-      child: TextButton(
-        onPressed: onPressed,
-        child: Text(
-          label,
-          style: GoogleFonts.roboto(
-            textStyle: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: size(16),
-              color: lowBlack,
-            ),
+    return InkWell(
+      onTap: onPressed,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: width(20), vertical: height(20)),
+        child: Container(
+          width: width(414),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  label,
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.roboto(
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: size(16),
+                      color: lowBlack,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
