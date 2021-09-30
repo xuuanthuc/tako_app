@@ -153,7 +153,7 @@ class HomeController extends GetxController {
           var list = <CategoryModel>[];
           data.forEach(
                 (key, value) {
-              Logger.info(key);
+              Logger.info('Item Id: $key, path: category/$category/menu/$key}');
               list.add(
                   CategoryModel(
                       id: key,

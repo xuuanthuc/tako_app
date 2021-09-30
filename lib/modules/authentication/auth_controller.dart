@@ -136,6 +136,7 @@ class AuthController extends GetxController {
 
   Future<void> logout() async {
     AppPreference().clear();
+    AppPreference().setSeen();
     Get.offAllNamed(Routes.AUTH);
   }
 }
