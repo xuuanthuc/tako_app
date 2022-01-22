@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "932299868406",
+    "firebase_url": "https://tako-5d6a2-default-rtdb.firebaseio.com",
+    "project_id": "tako-5d6a2",
+    "storage_bucket": "tako-5d6a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932299868406:android:ae11df0525fbf149c1c4d7",
+        "android_client_info": {
+          "package_name": "hi.chubby.tako_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932299868406-1j5di7ni5t2r44or0l33vpm17574qkt1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB65iiDnK1c5r7FKBzt_o9L0Dsa8nPwndw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932299868406-1j5di7ni5t2r44or0l33vpm17574qkt1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "932299868406-k3800manmr7n8aoa8s84glh0nq3372pb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "hi.chubby.takoApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
